@@ -44,7 +44,7 @@ public class MainPage {
     private WebElement changeTextSmsTabHeading;
     @FindBy (xpath = ".//*[@id=\'password-expand-button\']")
     private WebElement changePasswordTabHeading;
-    @FindBy (xpath = "//a[href='https://staging.onetouchhealth.com/home']")
+    @FindBy (xpath = ".//*[@id='app-layout']/div[4]/div/div/div/div[1]")
     private WebElement dashBoardButtonHeading;
 
 
@@ -75,12 +75,16 @@ public class MainPage {
 
 
 
-    public String getEditCredsHeadingText ()     {return editCredsHeading.getText(); }
-    public String getChangeUsernameTabHeading () {return changeUsernameTabHeading.getText();}
-    public String getChangeTextSmsTabheading ()  {return changeTextSmsTabHeading.getText(); }
-    public String getChangePasswordTabHeading () {return changePasswordTabHeading.getText();}
-    public String getMainPageHeading ()          {return dashBoardButtonHeading.getText();}
-
+    public String getEditCredsHeadingText ()     {return
+            editCredsHeading.getText(); }
+    public String getChangeUsernameTabHeading () {return
+            changeUsernameTabHeading.getText();}
+    public String getChangeTextSmsTabheading ()  {return
+            changeTextSmsTabHeading.getText(); }
+    public String getChangePasswordTabHeading () {return
+            changePasswordTabHeading.getText();}
+    public String getMainPageHeading ()          {return
+            dashBoardButtonHeading.getText();}
 
 }
 
