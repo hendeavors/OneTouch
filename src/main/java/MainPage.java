@@ -36,16 +36,16 @@ public class MainPage {
 
     //heading for checking the page
 
-    @FindBy (xpath = "//div[2]/strong")
-    private WebElement editCredsHeading;
-    @FindBy (xpath = ".//*[@id='headingOne']/h4/a")
-    private WebElement changeUsernameTabHeading;
-    @FindBy (xpath = ".//*[@id='sms-expand-button']")
-    private WebElement changeTextSmsTabHeading;
-    @FindBy (xpath = ".//*[@id=\'password-expand-button\']")
-    private WebElement changePasswordTabHeading;
     @FindBy (xpath = ".//*[@id='app-layout']/div[4]/div/div/div/div[1]")
     private WebElement dashBoardButtonHeading;
+    @FindBy (xpath = ".//*[@id='patient-header']/div[1]/div[1]/span")
+    private WebElement patientsName;
+    @FindBy (xpath = ".//*[@id='patient-header']/div[2]/div[3]/span[2]")
+    private WebElement practiceName;
+    @FindBy (xpath = ".//*[@id='welcome-tab']/h3")
+    private WebElement welcomeFrontpage;
+
+
 
 
     public MainPage clikcEditContactInfo(){
@@ -75,14 +75,12 @@ public class MainPage {
 
 
 
-    public String getEditCredsHeadingText ()     {return
-            editCredsHeading.getText(); }
-    public String getChangeUsernameTabHeading () {return
-            changeUsernameTabHeading.getText();}
-    public String getChangeTextSmsTabheading ()  {return
-            changeTextSmsTabHeading.getText(); }
-    public String getChangePasswordTabHeading () {return
-            changePasswordTabHeading.getText();}
+    public String getPatientsName ()     {return
+            patientsName.getText(); }
+    public String getPracticename () {return
+            practiceName.getText();}
+    public String getWelcomFrontpage ()  {return
+            welcomeFrontpage.getText(); }
     public String getMainPageHeading ()          {return
             dashBoardButtonHeading.getText();}
 

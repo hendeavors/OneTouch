@@ -90,9 +90,6 @@ public class QuickEnrollPage {
         }
 
 
-
-
-
         public QuickEnrollPage completeQuickEnrollAndSubmit (String firstnameshortform, String lastnameshortform,String dobmeaning, String insurancenumbershortform, String mobilephoneshortform, String usernameshortform, String passwordshortform, String confirmpasswordshortform ){
              this.typeFirstNameShortForm(firstnameshortform);
              this.typeLastNameShortForm(lastnameshortform);
