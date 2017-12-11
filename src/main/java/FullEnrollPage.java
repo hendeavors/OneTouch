@@ -9,18 +9,19 @@ public class FullEnrollPage {
     private WebDriver driver;
 
     public FullEnrollPage (WebDriver driver) {
+
         this.driver = driver;
     }
 
 
-    @FindBy(xpath = ".//*[@id='insurance_number']")
+    @FindBy(xpath = "//input[@id='insurance_number']")
     private WebElement insuranceNumberField;
-    @FindBy (xpath ="//a[@id='add-insurance-button']")
-    private WebElement addInsuranceButton;
-    @FindBy (xpath = "//a[@id='secondary_insurance_number']")
-    private WebElement secondaryInsuranceField;
-    @FindBy (xpath = "//input[@id='tertiary_insurance_number']")
-    private WebElement tertiaryInsuranceNumberField;
+    //@FindBy (xpath ="//a[@id='add-insurance-button']")
+    //private WebElement addInsuranceButton;
+    //@FindBy (xpath = "//input[@id='secondary_insurance_number']")
+    //private WebElement secondaryInsuranceField;
+    //@FindBy (xpath = "//input[@id='tertiary_insurance_number']")
+    //private WebElement tertiaryInsuranceNumberField;
     @FindBy(xpath = ".//*[@id='ssn']")
     private WebElement ssnField;
     @FindBy(xpath = ".//*[@id='first_name']")
@@ -107,18 +108,19 @@ public class FullEnrollPage {
         insuranceNumberField.sendKeys(insurancenumber);
         return this;
     }
-    public FullEnrollPage clickExpandInsurance () {
-        addInsuranceButton.click();
-        return this;
-    }
-    public FullEnrollPage typeSecondaryInsurance (String secondaryinsurance){
-        secondaryInsuranceField.sendKeys(secondaryinsurance);
-         return this;
-    }
-    public FullEnrollPage typeTertiaryInsurance (String tertiaryinsurance){
-        tertiaryInsuranceNumberField.sendKeys(tertiaryinsurance);
-        return this;
-    }
+    //public FullEnrollPage clickExpandInsurance () {
+    //    addInsuranceButton.click();
+    //    return this;
+    //}
+    //public FullEnrollPage typeSecondaryInsurance (String secondaryinsurance){
+    //    secondaryInsuranceField.sendKeys(secondaryinsurance);
+    //     return this;
+    //}
+    //public FullEnrollPage typeTertiaryInsurance (String tertiaryinsurance){
+    //    tertiaryInsuranceNumberField.sendKeys(tertiaryinsurance);
+    //    return this;
+    //}
+
     public FullEnrollPage typeSsn(String ssn) {
         ssnField.sendKeys(ssn);
         return this;
@@ -246,20 +248,16 @@ public class FullEnrollPage {
     }
 
 
-    public FullEnrollPage typeInsuranceNum (String insurancenumber) {
+    public FullEnrollPage typeIdentificationInfo (String insurancenumber, String secondaryinsurance, String tertiaryinsurance, String ssn, String firstname, String lastname, String DOB) {
         this.typeInsuranceNumber(insurancenumber);
-        this.clickExpandInsurance();
-        return new FullEnrollPage(driver);
-    }
-
-    public FullEnrollPage typeSecondInsurance(String secondaryinsurance) {
-        this.typeSecondaryInsurance(secondaryinsurance);
-        this.clickExpandInsurance();
-        return new FullEnrollPage(driver);
-    }
-
-    public FullEnrollPage typeTeriaryInsuranceAndAlltheRest (String tertiaryinsurance, String ssn, String firstname, String lastname, String DOB){
-        this.typeTertiaryInsurance(tertiaryinsurance);
+        //this.clickExpandInsurance();
+        //WebDriverWait wait = (new WebDriverWait(driver, 5));
+        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='secondary_insurance_number']")));
+        //this.typeSecondaryInsurance(secondaryinsurance);
+        //this.clickExpandInsurance();
+        //WebDriverWait wait2 = (new WebDriverWait(driver, 5));
+        //wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='tertiary_insurance_number']")));
+        //this.typeTertiaryInsurance(tertiaryinsurance);
         this.typeSsn(ssn);
         this.typeFirstName(firstname);
         this.typeLastName(lastname);
@@ -267,7 +265,6 @@ public class FullEnrollPage {
         this.chooseFemaleGender();
         return new FullEnrollPage(driver);
     }
-
     public FullEnrollPage typeAddressInformation (String address, String address2, String city,String zip){
         this.typeAddress(address);
         this.typeAddress2(address2);
@@ -292,8 +289,8 @@ public class FullEnrollPage {
         this.typeExpirateYear(expirateyear);
         this.typeUsername(username);
         this.typePassword(password);
-        WebDriverWait wait = (new WebDriverWait(driver, 2));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='password-confirmation-input']")));
+        WebDriverWait wait3 = (new WebDriverWait(driver, 5));
+        wait3.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='password-confirmation-input']")));
         this.typePasswordConfirmation(passwordconfirmation);
         this.clickCompleteEnrollmentButton();
         return new FullEnrollPage(driver);

@@ -1,6 +1,11 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.annotation.meta.TypeQualifierNickname;
 
 public class QuickEnrollPage {
         private WebDriver driver;
@@ -35,6 +40,13 @@ public class QuickEnrollPage {
         private WebElement enrollButtonShortForm;
         @FindBy (xpath = "a[@title='login']")
         private WebElement alreadyHaveAnAccount;
+
+        //errors cheking words
+        @FindBy (xpath = "//div/div[2]/form/div[6]/div/span/strong")
+        private WebElement phoneMailTaken;
+        @FindBy (xpath = "//div[2]/form/div[7]/div/span/strong")
+        private  WebElement usernameTaken;
+
 
         //Methods for the short form
 
@@ -89,6 +101,11 @@ public class QuickEnrollPage {
             return new QuickEnrollPage(driver);
         }
 
+        // errors methods
+
+        public String mailOrPhoneTaken() { return phoneMailTaken.getText(); }
+        public String usernameTaken() { return usernameTaken.getText(); }
+
 
         public QuickEnrollPage completeQuickEnrollAndSubmit (String firstnameshortform, String lastnameshortform,String dobmeaning, String insurancenumbershortform, String mobilephoneshortform, String usernameshortform, String passwordshortform, String confirmpasswordshortform ){
              this.typeFirstNameShortForm(firstnameshortform);
@@ -98,6 +115,8 @@ public class QuickEnrollPage {
              this.typeInsuranceNumberShortForm(insurancenumbershortform);
              this.typeMobilePhoneShortForm(mobilephoneshortform);
              this.typeUsernameShortForm(usernameshortform);
+             WebDriverWait wait = (new WebDriverWait(driver, 5));
+             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='password-confirmation-input']")));
              this.typeConfirmPasswordShortForm(confirmpasswordshortform);
              this.chooseMaleGenderShortForm();
              this.acceptTheTerms();

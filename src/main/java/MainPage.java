@@ -72,6 +72,10 @@ public class MainPage {
         toCompleteButton.click();
         return new MainPage(driver);
     }
+    public MainPage clickMyJouranltab (){
+        myJournalTab.click();
+        return new MainPage(driver);
+    }
 
 
 

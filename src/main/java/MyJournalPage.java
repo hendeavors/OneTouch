@@ -89,6 +89,8 @@ public class MyJournalPage {
     private WebElement healthyMealBloodGlucose;
     @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[6]/div[2]")
     private WebElement unhealthyMealBloodGlucose;
+    @FindBy (xpath = ".//*[@id='journalEntry']/div[1]/div[2]/div[2]/div/label")
+    private WebElement dailyJournalHeading
 
     public String getHealthyBMI () { return healthiBmiRange.getText(); }
     public String getUnhealthyBMI (){ return unhealthyBmiRange.getText();}
@@ -96,6 +98,8 @@ public class MyJournalPage {
     public String getUnhealthyBloodPressure  (){return  unhealthyBloodPressureRange.getText();}
     public String getHealthyBloodGlucose () {return healthyBloodGlucose.getText();}
     public String getUnhealthyBloodGlucose (){return unhealthyBloodGlucose.getText();}
+    public String getDailyJournalHeading () { return }
+
 
 
 
