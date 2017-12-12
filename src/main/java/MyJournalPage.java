@@ -11,14 +11,16 @@ public class MyJournalPage {
     private WebDriver driver;
 
     public MyJournalPage(WebDriver driver) {
+
         this.driver = driver;
     }
 
-
     // Main fields and buttons
-    @FindBy (xpath = ".//*[@id='dateSelect']")
-    private WebElement dateRange;
-    @FindBy (xpath = ".//*[@id='weight']")
+    @FindBy (xpath = ".//*[@id='dateSelectDiv']/span/span/span")
+    private WebElement dateRangeDropDown;
+    @FindBy (xpath = "//a[@title='Monday, December 04, 2017']")
+    private WebElement chooseMondayThe4th;
+    @FindBy (xpath = "//input[@id='weight']")
     private WebElement weightField;
     @FindBy (xpath = ".//*[@id='height']")
     private WebElement heightDropDown;
@@ -27,34 +29,18 @@ public class MyJournalPage {
     @FindBy (xpath = ".//*[@id='bloodPressure']")
     private WebElement bloodPressureField;
     @FindBy (xpath = ".//*[@id='amBloodGlucose']")
-    private WebElement BloodGlucoseField;
+    private WebElement bloodGlucoseField;
     @FindBy (xpath = ".//*[@id='afterBloodGlucose']")
     private WebElement afterMealBloodGlucoseField;
     @FindBy (xpath = ".//*[@id='textJournal']")
     private WebElement commentsField;
-    @FindBy (xpath = ".//*[@id='saveJournal']")
+    @FindBy (xpath = ".//*[@id='updateJournal']")
     private WebElement updateButton;
     @FindBy (xpath = "//div[@id='moreInfo']")
     private WebElement moreInfoButton;
 
     // Checking the notes for the fields
 
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[3]/div[1]")
-    private WebElement healthiBmiRange;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[3]/div[2]")
-    private WebElement unhealthyBmiRange;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[4]/div[1]")
-    private WebElement healthyBloodPressureRange;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[4]/div[2]")
-    private WebElement unhealthyBloodPressureRange;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[5]/div[1]")
-    private WebElement healthyBloodGlucose;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[5]/div[2]")
-    private WebElement unhealthyBloodGlucose;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[6]/div[1]")
-    private WebElement healthyMealBloodGlucose;
-    @FindBy (xpath = ".//*[@id='journalEntry']/div[4]/div/div/div[6]/div[2]")
-    private WebElement unhealthyMealBloodGlucose;
     @FindBy (xpath = ".//*[@id='journalEntry']/div[1]/div[2]/div[2]/div/label")
     private WebElement dailyJournalHeading;
     @FindBy (xpath = ".//*[@id='moreInfoDialogBox_wnd_title']")
@@ -93,19 +79,10 @@ public class MyJournalPage {
     private WebElement amBloodGlucose;
 
      //checking words
-
-    public String getHealthyBMI () { return healthiBmiRange.getText(); }
-    public String getUnhealthyBMI (){ return unhealthyBmiRange.getText();}
-    public String getHealthyBloodPressure () {return healthyBloodPressureRange.getText();}
-    public String getUnhealthyBloodPressure  (){return  unhealthyBloodPressureRange.getText();}
-    public String getHealthyBloodGlucose () {return healthyBloodGlucose.getText();}
-    public String getUnhealthyBloodGlucose (){return unhealthyBloodGlucose.getText();}
     public String getDailyJournalHeading () { return dailyJournalHeading.getText();}
     public String getMoreInfoheading () {return moreInfoHeading.getText();}
     public String getDisclaimer () {return disclaimer.getText();}
     public String getNoteFromTheDiary () {return commentsField.getText();}
-
-    // checking labels
     public String getWeightLabel (){return weightLabel.getText();}
     public String getHeightLabel (){return heightLabel.getText();}
     public String getBMILabel (){return bmiLabel.getText();}
@@ -115,19 +92,13 @@ public class MyJournalPage {
 
     // checking attribute
 
-    public String getBMIDot (){
-        return bmiGraphicsDot.getAttribute("cx");
-        //return bmiGraphicsDot.getAttribute("cy");
-    }
-
-
-
-
-    public MyJournalPage typeDate (String journalDate){
-        dateRange.sendKeys(journalDate);
+    public MyJournalPage typeThe4thOfDecember (){
+        dateRangeDropDown.click();
+        chooseMondayThe4th.click();
         return this;
     }
     public MyJournalPage typeWeight(String weight) {
+        weightField.clear();
         weightField.sendKeys(weight);
         return this;
     }
@@ -137,18 +108,22 @@ public class MyJournalPage {
         return this;
     }
     public MyJournalPage typeBloodPressure(String bloodpressure) {
+        bloodPressureField.clear();
         bloodPressureField.sendKeys(bloodpressure);
         return this;
     }
     public MyJournalPage typeBloodGlucose(String bloodglucose) {
-        BloodGlucoseField.sendKeys(bloodglucose);
+        bloodGlucoseField.clear();
+        bloodGlucoseField.sendKeys(bloodglucose);
         return this;
     }
     public MyJournalPage typeAMBloodGlucose(String amglucose) {
+        afterMealBloodGlucoseField.clear();
         afterMealBloodGlucoseField.sendKeys(amglucose);
         return this;
     }
     public MyJournalPage typeNoteToTheJournal(String note) {
+        commentsField.clear();
         commentsField.sendKeys(note);
         return this;
     }
@@ -160,14 +135,18 @@ public class MyJournalPage {
         moreInfoButton.click();
         return this;
     }
-    public MyJournalPage addANoteToMyJournal (String journalDate, String weight, String bloodpressure, String bloodglucose, String amglucose, String note) {
-        this.typeDate(journalDate);
+    public MyJournalPage addDateToTheJouranl(){
+        this.typeThe4thOfDecember();
+        return new MyJournalPage(driver);
+    }
+    public MyJournalPage addANoteToMyJournal (String weight, String bloodpressure, String bloodglucose, String amglucose, String note) {
         this.typeWeight(weight);
         this.selectHeight();
         this.typeBloodPressure(bloodpressure);
         this.typeBloodGlucose(bloodglucose);
         this.typeAMBloodGlucose(amglucose);
         this.typeNoteToTheJournal(note);
+        this.clickSaveButton();
         return new MyJournalPage(driver);
     }
 

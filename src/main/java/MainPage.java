@@ -79,14 +79,10 @@ public class MainPage {
 
 
 
-    public String getPatientsName ()     {return
-            patientsName.getText(); }
-    public String getPracticename () {return
-            practiceName.getText();}
-    public String getWelcomFrontpage ()  {return
-            welcomeFrontpage.getText(); }
-    public String getMainPageHeading ()          {return
-            dashBoardButtonHeading.getText();}
+    public String getPatientsName ()     {return       patientsName.getText(); }
+    public String getPracticename ()     {return       practiceName.getText();}
+    public String getWelcomeFrontpage ()  {return       welcomeFrontpage.getText(); }
+    public String getMainPageHeading ()  {return       dashBoardButtonHeading.getText();}
 
 }
 
