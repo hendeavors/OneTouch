@@ -15,7 +15,7 @@ public class MainPage {
     private WebElement myAccountButton;
     @FindBy(xpath = "//a[@href='#welcome-tab']" )
     private WebElement welcomeTab;
-    @FindBy(xpath = ".//*[@id='journalTab']/a" )
+    @FindBy(xpath = "//a[@href='#journal-tab']" )
     private WebElement myJournalTab;
     @FindBy(xpath = "//a[@href='#allProviders']" )
     private WebElement myProvidersTab;
