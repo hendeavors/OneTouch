@@ -97,6 +97,10 @@ public class MyJournalPage {
         chooseMondayThe4th.click();
         return this;
     }
+    public MyJournalPage deleteWeight () {
+        weightField.clear();
+        return this;
+    }
     public MyJournalPage typeWeight(String weight) {
         weightField.clear();
         weightField.sendKeys(weight);
@@ -112,9 +116,17 @@ public class MyJournalPage {
         bloodPressureField.sendKeys(bloodpressure);
         return this;
     }
+    public MyJournalPage deleteBloodPressure(){
+        bloodPressureField.clear();
+        return this;
+    }
     public MyJournalPage typeBloodGlucose(String bloodglucose) {
         bloodGlucoseField.clear();
         bloodGlucoseField.sendKeys(bloodglucose);
+        return this;
+    }
+    public MyJournalPage deleteBloodGlucose(){
+        bloodGlucoseField.clear();
         return this;
     }
     public MyJournalPage typeAMBloodGlucose(String amglucose) {
@@ -122,9 +134,17 @@ public class MyJournalPage {
         afterMealBloodGlucoseField.sendKeys(amglucose);
         return this;
     }
+    public MyJournalPage deleteAMBloodGlucose(){
+        afterMealBloodGlucoseField.clear();
+        return this;
+    }
     public MyJournalPage typeNoteToTheJournal(String note) {
         commentsField.clear();
         commentsField.sendKeys(note);
+        return this;
+    }
+    public MyJournalPage deleteNotesInTheJournal (){
+        commentsField.clear();
         return this;
     }
     public MyJournalPage clickSaveButton() {
@@ -140,6 +160,7 @@ public class MyJournalPage {
         return new MyJournalPage(driver);
     }
     public MyJournalPage addANoteToMyJournal (String weight, String bloodpressure, String bloodglucose, String amglucose, String note) {
+        this.addDateToTheJouranl();
         this.typeWeight(weight);
         this.selectHeight();
         this.typeBloodPressure(bloodpressure);
@@ -149,7 +170,17 @@ public class MyJournalPage {
         this.clickSaveButton();
         return new MyJournalPage(driver);
     }
+    public MyJournalPage deleteAllTheFields () {
+        this.addDateToTheJouranl();
+        this.deleteWeight();
+        this.deleteBloodPressure();
+        this.deleteBloodGlucose();
+        this.deleteAMBloodGlucose();
+        this.deleteNotesInTheJournal();
+        this.clickSaveButton();
+        return new MyJournalPage(driver);
 
+    }
 
 
 
