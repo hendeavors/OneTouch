@@ -1,58 +1,69 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+
 public class LoginPage {
-    private WebDriver driver;
+    public LoginPage page;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
+    //Primary Elements on the page
     @FindBy(xpath = "//input[@name='username']")
     private WebElement usernameField;
     @FindBy(xpath = "//input[@name='password']")
     private WebElement passwordField;
-    @FindBy(xpath = "//input[@name='remember' and @type='checkbox']")
+    @FindBy(xpath = "///div[2]/form/div[3]/div/div/label/input")
     private WebElement rememberMeCheckBox;
-    @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/forgot-username']")
-    private WebElement forgotNameLink;
     @FindBy(xpath = "//button[@type='submit']")
-    private WebElement logInButton;
+    private WebElement loginButton;
+    @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/forgot-username']")
+    private WebElement forgotUsername;
+    @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/password/reset']")
+    private WebElement forgotPassword;
     @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/enroll']")
-    private WebElement newAccountButton;
+    private WebElement createNewAccount;
 
-    public LoginPage typeUsername(String username) {
+    //Error Elements on the page
+    @FindBy(xpath = ".//*[@id='public-layout']/div[3]/h2")
+    private WebElement loginError;
+    @FindBy(xpath = ".//*[@id='public-layout']/div[3]/div[7]/div/button")
+    private WebElement skipLoginError;
+    @FindBy(xpath = "//span[@class='help-block']/strong")
+    private WebElement invalidCreds;
+
+    //Secondary Elements on the page
+    @FindBy(xpath = "//a[@title='privacy policy']")
+    private WebElement privacyPolicy;
+    @FindBy(xpath = "//a[@title='terms and conditions']")
+    private WebElement termsAndConditions;
+
+
+    public LoginPage typeUsername (String username){
         usernameField.sendKeys(username);
         return this;
     }
-    public LoginPage typePassword(String password) {
+    public LoginPage typePassword (String password){
         passwordField.sendKeys(password);
-        rememberMeCheckBox.click();
         return this;
     }
-    public LoginPage markRememberMecheckBox() {
-        rememberMeCheckBox.click();
+    public LoginPage clickCheckBox (boolean value) {
+        if (!rememberMeCheckBox.isSelected()== value){
+            rememberMeCheckBox.click();
+        }
         return this;
     }
-    public LoginPage clickLoginButton() {
-        logInButton.click();
+    public LoginPage clickLogin(){
+        loginButton.click();
         return this;
     }
-
-    public LoginPage loggingIn(String username, String password) {
-        this.typeUsername(username);
-        this.typePassword(password);
-        this.markRememberMecheckBox();
-        this.clickLoginButton();
-        return new LoginPage(driver);
+    public void logginIn () {
+        loginButton.click();
     }
-
-    public LoginPage createNewAccount (){
-        newAccountButton.click();
-        return new LoginPage(driver);
-    }
-
+    public String getErrorText () { return loginError.getText();}
+    public String getInvalidCredsError () {return invalidCreds.getText();}
+    public String privacyPolicyHeader () {return privacyPolicy.getText();}
+    public String termsAndConditionsHeader () {return termsAndConditions.getText();}
 
 }
 
