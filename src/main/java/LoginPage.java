@@ -1,75 +1,91 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
-
 public class LoginPage {
-    public LoginPage page;
 
-    //Primary Elements on the page
+    private WebDriver driver;
+    public LoginPage(WebDriver driver){
+
+    }
     @FindBy(xpath = "//input[@name='username']")
     private WebElement usernameField;
     @FindBy(xpath = "//input[@name='password']")
     private WebElement passwordField;
-    @FindBy(xpath = "///div[2]/form/div[3]/div/div/label/input")
-    private WebElement rememberMeCheckBox;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy (xpath = "//input[@type='checkbox']")
+    private WebElement checkbox;
+    @FindBy (xpath = "//button[@type='submit']")
     private WebElement loginButton;
-    @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/forgot-username']")
+    @FindBy (xpath = "//a[text()='Forgot Your Username?']")
     private WebElement forgotUsername;
-    @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/password/reset']")
+    @FindBy (xpath = "//a[text()='Forgot Your Password?']")
     private WebElement forgotPassword;
-    @FindBy(xpath = "//a[@href='https://staging.onetouchhealth.com/enroll']")
-    private WebElement createNewAccount;
+    @FindBy (xpath = "//div[@class='container']/div[@class='row']/div[1]")
+    private WebElement llcBottomLabel;
+    @FindBy (xpath = "//a[@title='privacy policy']")
+    private WebElement privacyPolicyBottomLabel;
+    @FindBy (xpath = "//a[@title='terms and conditions']")
+    private WebElement termsBottomLabel;
+    @FindBy (xpath = "//a[text()='Create a new account']")
+    private WebElement createNewAccButton;
+    @FindBy (xpath = ".//*[@id='public-layout']/header/nav/div/a/img")
+    private WebElement headerPicture;
+    @FindBy (xpath = "//section[@class='enrollment-type-details']/h2")
+    private WebElement fullEnrollHeading;
+    @FindBy (xpath = "//div[2]/section/h2")
+    private WebElement shortEnrollHeading;
+    @FindBy (xpath = ".//*[@id='public-layout']/div[3]/h2")
+    private WebElement authFailure;
+    @FindBy (xpath = "//button[@class='confirm']")
+    private WebElement failureOkButton;
+    @FindBy (xpath = "//span[@class='help-block']/strong")
+    private WebElement invalidCredError;
 
-    //Error Elements on the page
-    @FindBy(xpath = ".//*[@id='public-layout']/div[3]/h2")
-    private WebElement loginError;
-    @FindBy(xpath = ".//*[@id='public-layout']/div[3]/div[7]/div/button")
-    private WebElement skipLoginError;
-    @FindBy(xpath = "//span[@class='help-block']/strong")
-    private WebElement invalidCreds;
-
-    //Secondary Elements on the page
-    @FindBy(xpath = "//a[@title='privacy policy']")
-    private WebElement privacyPolicy;
-    @FindBy(xpath = "//a[@title='terms and conditions']")
-    private WebElement termsAndConditions;
 
 
-    public LoginPage typeUsername (String username){
-        usernameField.sendKeys(username);
-        return this;
-    }
+
+   public LoginPage typeUsername (String username){
+       usernameField.sendKeys(username);
+       return this;
+   }
     public LoginPage typePassword (String password){
         passwordField.sendKeys(password);
         return this;
     }
-    public LoginPage clickCheckBox (boolean value) {
-        if (!rememberMeCheckBox.isSelected()== value){
-            rememberMeCheckBox.click();
-        }
+    public LoginPage clickCheckbox (){
+        checkbox.click();
         return this;
     }
-    public LoginPage clickLogin(){
+    public LoginPage clickLoginButton (){
         loginButton.click();
         return this;
     }
-    public void logginIn () {
-        loginButton.click();
+    public LoginPage clickCreateNewAcc (){
+       createNewAccButton.click();
+       return this;
     }
-    public String getErrorText () { return loginError.getText();}
-    public String getInvalidCredsError () {return invalidCreds.getText();}
-    public String privacyPolicyHeader () {return privacyPolicy.getText();}
-    public String termsAndConditionsHeader () {return termsAndConditions.getText();}
+    public LoginPage clickFailureOK(){
+       failureOkButton.click();
+       return this;
+    }
+
+
+    public LoginPage logInToTheAccount (String username, String password){
+       this.typeUsername(username);
+       this.typePassword(password);
+       this.clickCheckbox();
+       this.clickLoginButton();
+       return new LoginPage(driver);
+    }
+
+    public String getShortHeadingText () {return shortEnrollHeading.getText();}
+    public String getFullHeadingText () {return fullEnrollHeading.getText();}
+    public String getLlcBottomLabel (){ return llcBottomLabel.getText();}
+    public String getPrivacyPolicyBottomLabel(){ return privacyPolicyBottomLabel.getText();}
+    public String getTermsConditionsLabel(){ return termsBottomLabel.getText();}
+    public String getFailureText () {return authFailure.getText();}
+    public String getInvalidCredsError () {return invalidCredError.getText();}
 
 }
-
-
-
-
-
 
 
