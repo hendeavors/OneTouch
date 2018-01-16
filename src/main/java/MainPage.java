@@ -50,7 +50,11 @@ public class MainPage {
     public String getProviderText () {return providerLabel.getText();}
     public String getPracticeText () {return practiceLabel.getText();}
     public String getTheHICNOText () {return hicnoLabel.getText();}
-
+    public String getWelcomeTabText () {return welcomeTab.getText();}
+    public String getThingsToCompeteText () {return thingsToCompleteTab.getText();}
+    public String getMyJournalTabText () {return myJournalTab.getText();}
+    public String getSmartRecordTabText () {return smartRecordTab.getText();}
+    public String getMyProvidersTabText () {return myProvidersTab.getText();}
 
     public MainPage clickWelcomeTab(){
         welcomeTab.click();
