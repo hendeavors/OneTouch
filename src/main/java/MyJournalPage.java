@@ -1,6 +1,11 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.sql.Driver;
 
 public class MyJournalPage {
     private WebDriver driver;
@@ -15,8 +20,8 @@ public class MyJournalPage {
    private WebElement glucoseField;
    @FindBy (xpath = ".//*[@id='afterBloodGlucose']")
    private WebElement amGlucoseField;
-   @FindBy (xpath = ".//*[@id='height']")
-   private WebElement heightDropDown;
+   //@FindBy (xpath = ".//*[@id='height']")
+   //private WebElement heightDropDown;
    @FindBy (xpath = ".//*[@id='height']/option[@value='67']")
    private WebElement heightOption;
    @FindBy (xpath = ".//*[@id='saveJournal']")
@@ -25,8 +30,10 @@ public class MyJournalPage {
    private WebElement moreInfoButton;
    @FindBy (xpath = ".//*[@id='textJournal']")
    private WebElement dailyJournalField;
-   @FindBy (xpath = ".//*[@id='dateSelect']")
-   private WebElement dateField;
+   @FindBy (xpath = ".//*[@id='dateSelectDiv']/span/span/span")
+   private WebElement chooseDateButton;
+   @FindBy (xpath = "//a[@title='Tuesday, January 02, 2018']")
+   private WebElement setTheDate;
    @FindBy (xpath = ".//*[@id='updateJournal']")
    private WebElement updateButton;
    @FindBy (xpath = ".//*[@id='bmi']")
@@ -34,6 +41,12 @@ public class MyJournalPage {
 
 
    // text elements
+
+    //More info button
+    @FindBy (xpath = ".//*[@id='moreInfoDialogBox']/p")
+    private WebElement moreInfoResultsMayVary;
+    @FindBy (xpath = ".//*[@id='moreInfoDialogBox_wnd_title']")
+    private WebElement moreInfoHeading;
 
    //Disclaimer
     @FindBy (xpath = ".//*[@id='journalEntry']/div[2]/p")
@@ -63,6 +76,10 @@ public class MyJournalPage {
     @FindBy (xpath = "//div[@class='afterbgUnhealthy unhealthy']")
     private WebElement unhealthyAMGlucose;
 
+    //Success
+    @FindBy (xpath = ".//*[@id='app-layout']/div[4]/div/div/div/div[2]/div[1]/div/strong")
+    private WebElement successContainer;
+
     public MyJournalPage clickSave (){
         saveButton.click();
         return this;
@@ -81,7 +98,7 @@ public class MyJournalPage {
         return this;
     }
     public MyJournalPage setHeight (){
-        heightDropDown.click();
+        //heightDropDown.click();
         heightOption.click(); // height is always 5'7"
         return this;
     }
@@ -105,41 +122,39 @@ public class MyJournalPage {
         dailyJournalField.sendKeys(note);
         return this;
     }
-    public MyJournalPage setTheDate (String date){
-        dateField.clear();
-        dateField.sendKeys(date);
+    public MyJournalPage setTheDate (){
+        chooseDateButton.click();
+        setTheDate.click();
         return this;
     }
-
-    public MyJournalPage addAnEvent(String weight, String pressure, String glucose, String amglucose, String note, String date){
-        this.setWeight(weight);
-        this.setHeight();
-        this.setBloodP(pressure);
-        this.setGlucose(glucose);
-        this.setAMGlucose(amglucose);
-        this.writeANote(note);
-        this.setTheDate(date);
-        this.clickSave();
-        return new MyJournalPage(driver);
+    public MyJournalPage pressSaveSubmit (boolean value) {
+        if (!updateButton.isDisplayed() == value)  {
+            updateButton.click();}
+     return this;
     }
-
-    public MyJournalPage modifyAnEvent (String weight, String pressure, String glucose, String amglucose, String note, String date){
-        this.setWeight(weight);
-        this.setHeight();
-        this.setBloodP(pressure);
-        this.setGlucose(glucose);
-        this.setAMGlucose(amglucose);
-        this.writeANote(note);
-        this.setTheDate(date);
-        this.clickSave();
-        return new MyJournalPage(driver);
+    public MyJournalPage deleteWeight (){
+        weightField.clear();
+        return this;
     }
-
-
+    public MyJournalPage deleteBP (){
+        bloodPressField.clear();
+        return this;
+    }
+    public MyJournalPage deleteGlucose (){
+        glucoseField.clear();
+        return this;
+    }
+    public MyJournalPage deleteAMGlucose (){
+        amGlucoseField.clear();
+        return this;
+    }
+    public String journalNote () {return dailyJournalField.getText();}
+    public String weightMeaning () { return weightField.getText();}
+    public String successHeading (){return successContainer.getText();}
 
     public String disclaimerText () {return disclamer.getText();}
-
     public String bmiMeaning () {return bmiField.getText();}
+
     public String bmiUnhealthyMeaning () {return unhealthyBMIText.getText();}
     public String bmiHealthyMeaning () {return healthyBloodP.getText();}
 
@@ -151,4 +166,9 @@ public class MyJournalPage {
 
     public String glucAMUnhealthymeaning () {return unhealthyAMGlucose.getText();}
     public String glucAMHealthymeaning () {return healthyAMGlucose.getText();}
+
+    public String moreInfoText () {return moreInfoResultsMayVary.getText();}
+    public String moreInfoText2 () {return moreInfoHeading.getText();}
+
+
 }
