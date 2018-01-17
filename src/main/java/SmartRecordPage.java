@@ -34,7 +34,4 @@ public class SmartRecordPage {
     private WebElement moreInfo2Text;
     @FindBy(xpath = ".//*[@id='popover383925']/div[2]")
     private WebElement moreInfo3Text;
-
-
-
 }
