@@ -128,8 +128,11 @@ public class MyJournalPage {
         return this;
     }
     public MyJournalPage pressSaveSubmit (boolean value) {
-        if (!updateButton.isDisplayed() == value)  {
+        if  (!updateButton.isDisplayed() == value)  {
             updateButton.click();}
+        else {
+            saveButton.click();
+        }
      return this;
     }
     public MyJournalPage deleteWeight (){

@@ -56,6 +56,10 @@ public class MainPage {
     public String getSmartRecordTabText () {return smartRecordTab.getText();}
     public String getMyProvidersTabText () {return myProvidersTab.getText();}
 
+    public String getLlcBottomLabel (){ return llcBottomLabel.getText();}
+    public String getPrivacyPolicyBottomLabel(){ return privacyPolicyBottomLabel.getText();}
+    public String getTermsConditionsLabel(){ return termsBottomLabel.getText();}
+
     public MainPage clickWelcomeTab(){
         welcomeTab.click();
         return this;
