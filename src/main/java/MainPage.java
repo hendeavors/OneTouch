@@ -27,7 +27,7 @@ public class MainPage {
     private WebElement thingsToCompleteTab;
     @FindBy (xpath = "//a[text()='My Journal']")
     private WebElement myJournalTab;
-    @FindBy (xpath = "//a[text()='Smart Record']")
+    @FindBy (xpath = "//a[@href='#patient-profile']")
     private WebElement smartRecordTab;
     @FindBy (xpath = "//a[text()='My Providers']")
     private WebElement myProvidersTab;
