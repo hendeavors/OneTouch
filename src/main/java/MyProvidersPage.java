@@ -21,6 +21,12 @@ public class MyProvidersPage {
     private WebElement updateProviderButton;
     @FindBy(css = ".btn.btn-danger.removeProvider")
     private WebElement deleteProviderButton;
+    @FindBy(css = ".btn.btn-primary.pull-right.backToProviderBtn")
+    private WebElement backToProvidersButton;
+    @FindBy(css = "#updateProviderBtn")
+    private WebElement updateProviderButtonInTheChart;
+    @FindBy(css = "#removeFullProvider")
+    private WebElement deleteProviderButtonInThe
 
     //Fields
     @FindBy (xpath = "//input[@name='findLastName']")
@@ -33,6 +39,27 @@ public class MyProvidersPage {
     private WebElement cityField;
     @FindBy (xpath = "//input[@name='findPostal']")
     private WebElement postalCodeField;
+//_________________________________________________________________________
+
+    @FindBy(xpath = "#pType")
+    private WebElement providerTypeDropDown;
+    @FindBy(xpath = ".//*[@id='pType']/option[@value='3']")
+    private WebElement providerTypeOption;
+    @FindBy(xpath = "//span[@aria-controls='lastApp_dateview']")
+    private WebElement calendarLastAppointmentSelect;
+    @FindBy(xpath = "//span[@aria-controls='nextApp_dateview']")
+    private WebElement calendarNextAppointmentSelect;
+    @FindBy(css = "#fax")
+    private WebElement faxField;
+
+
+
+
+
+
+
+
+
 
     //Dropdown
     @FindBy(xpath = "//select[@name='findState']")
@@ -58,8 +85,9 @@ public class MyProvidersPage {
     @FindBy(css = ".k-icon.k-i-close")
     private WebElement closeResultsWindow;
 
-
-
+    //Elements
+    @FindBy(css = ".form-group.text-center>label")
+    private WebElement providerNamelabel;
 
 
 
