@@ -26,6 +26,8 @@ public class ManageNotificationsTab {
     private List<WebElement> subscribeBackToSMSNotificationsList;
     @FindBy (xpath = ".//*[@id='enable-email-notifications-link']")
     private WebElement subscribeEmailBackButton;
+    @FindBy(xpath = "//a[@class='btn btn-success']")
+    private WebElement subscribeSMSBackButton;
 
 
 
@@ -104,7 +106,9 @@ public class ManageNotificationsTab {
     @FindBy(xpath = ".//*[@id='enter-verification-code']")
     private WebElement verificationCodeField;
 
-
+    // text elements
+    @FindBy (xpath = ".//*[@id='sms-status-modal-status-ok']/span")
+    private WebElement statusBarText;
 
 
 
@@ -116,6 +120,7 @@ public class ManageNotificationsTab {
     public String emailChangeSuccessText () { return successContainer.getText();}
     public String wrongCodeFailureText () {return wrongCodeRedContiner.getText();}
     public String notificationsDisabledText () {return notificationsDisabledContianer.getText();}
+    public String statusBarText () { return statusBarText.getText();}
 
 
      // boolean methods
@@ -184,6 +189,14 @@ public class ManageNotificationsTab {
     }
     public ManageNotificationsTab clickSubscribeEmail (){
         subscribeEmailBackButton.click();
+        return this;
+    }
+    public ManageNotificationsTab clickSubscribeSMS (){
+        subscribeSMSBackButton.click();
+        return this;
+    }
+    public ManageNotificationsTab clickStatusLink () {
+        notificationStatusLink.click();
         return this;
     }
 
