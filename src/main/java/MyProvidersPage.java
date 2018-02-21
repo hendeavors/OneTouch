@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import sun.swing.plaf.synth.DefaultSynthStyle;
 
 public class MyProvidersPage {
     private WebDriver driver;
@@ -13,7 +14,7 @@ public class MyProvidersPage {
     private WebElement searchButton;
     @FindBy(xpath = ".//*[@id='clearFindProvider']")
     private WebElement clearButton;
-    @FindBy(xpath = ".//*[@id='manualAdd']")
+    @FindBy(css = "#manualAdd")
     private WebElement addManuallyButton;
     @FindBy(css = ".btn.btn-primary.getProvider")
     private WebElement updateProviderButton;
@@ -25,6 +26,8 @@ public class MyProvidersPage {
     private WebElement updateProviderButtonInTheChart;
     @FindBy(css = "#removeFullProvider")
     private WebElement deleteProviderButtonInTheChart;
+    @FindBy(css = ".confirm")
+    private WebElement okButtonForError;
 
     //Fields in the main search window
     @FindBy (xpath = "//input[@name='findLastName']")
@@ -62,7 +65,7 @@ public class MyProvidersPage {
     @FindBy(css = ".k-icon.k-i-close")
     private WebElement closeResultsWindow;
     @FindBy(css = ".btn.btn-primary.selectProvider")
-    private WebElement getAddProviderButton;
+    private WebElement addProviderButton;
 
     //Fields in the providers chart
     @FindBy(css = "#pType")
@@ -71,9 +74,13 @@ public class MyProvidersPage {
     private WebElement providerTypeOption;
     @FindBy(xpath = "//span[@aria-controls='lastApp_dateview']")
     private WebElement calendarLastAppointmentSelect;
+    @FindBy(xpath = "//a[@title='Monday, January 01, 2018']")
+    private WebElement calendarLastAppointSet;
     @FindBy(xpath = "//span[@aria-controls='nextApp_dateview']")
     private WebElement calendarNextAppointmentSelect;
-    @FindBy(css = "#fax")
+    @FindBy(xpath = "//a[@title='Wednesday, February 28, 2018']")
+    private WebElement calendarNextAppointSet;
+    @FindBy(css = "#addfax")
     private WebElement faxField;
     @FindBy(css = "#addpName")
     private WebElement providerNameField;
@@ -85,6 +92,19 @@ public class MyProvidersPage {
     private WebElement providerPhoneField;
     @FindBy(css = "#addcommentBox")
     private WebElement addCommentBox;
+    @FindBy(css = "#save-submit-btn")
+    private WebElement saveManuallyAddedProvider;
+
+    // Error texts
+    @FindBy(css = ".sweet-alert.showSweetAlert.visible>h2")
+    private WebElement searchError;
+
+    //Provider text
+    @FindBy(xpath = "//div[@class='form-group text-center']/label")
+    private WebElement providerNameLabel;
+    @FindBy(xpath = "//label[.=\"Test Provider\"]")
+    private WebElement providerNameLabel2;
+
 
 
     public MyProvidersPage typeFirstName(String firstname){
@@ -122,17 +142,81 @@ public class MyProvidersPage {
         return this;
     }
 
-    public MyProvidersPage hitAddProvider(){
+    public MyProvidersPage hitAddProviderManually(){
         addManuallyButton.click();
         return this;
     }
-    public MyProvidersPage addProviderManually(String providername, String companyname, String provideremail){
-        providerTypeDropDown.click();
-        providerTypeOption.click();
-        providerNameField.sendKeys(providername);
-        providerCompanyField.sendKeys(companyname);
-        providerEmailField.sendKeys(provideremail);
+    public MyProvidersPage hitAddProvider(){
+        addProviderButton.click();
         return this;
+    }
+    public MyProvidersPage hitOkError() {
+        okButtonForError.click();
+        return this;
+    }
+    public MyProvidersPage setLastDate(){
+        calendarLastAppointmentSelect.click();
+        calendarLastAppointSet.click();
+        return this;
+    }
+    public MyProvidersPage setNextDate() {
+        calendarNextAppointmentSelect.click();
+        calendarNextAppointSet.click();
+        return this;
+    }
+    public MyProvidersPage hitSaveManuallyAddedProvider(){
+        saveManuallyAddedProvider.click();
+        return this;
+    }
+    public MyProvidersPage providerDropDown(){
+        providerTypeDropDown.click();
+        return this;
+    }
+    public MyProvidersPage providerDropDownOption(){
+        providerTypeOption.click();
+        return this;
+    }
+    public MyProvidersPage typeProviderName (String providername){
+        providerNameField.sendKeys( providername);
+        return this;
+    }
+    public MyProvidersPage typeProviderCompany (String companyname){
+        providerCompanyField.sendKeys( companyname);
+        return this;
+    }
+    public MyProvidersPage typeProviderEmail (String provideremail){
+        providerEmailField.sendKeys( provideremail);
+        return this;
+    }
+    public MyProvidersPage typeProviderPhone (String providerPhone){
+        providerPhoneField.sendKeys( providerPhone);
+        return this;
+    }
+    public MyProvidersPage typeFax (String fax){
+        faxField.sendKeys( fax);
+        return this;
+    }
+    public MyProvidersPage typeComment (String notes){
+        addCommentBox.sendKeys( notes);
+        return this;
+    }
+    public MyProvidersPage clickSaveManually ( ){
+        saveManuallyAddedProvider.click();
+        return this;
+    }
+
+    public MyProvidersPage addProviderManually(String providername, String companyname, String provideremail,
+                                               String providerphone, String fax, String notes){
+        this.typeProviderName(providername);
+        this.typeProviderCompany(companyname);
+        this.typeProviderEmail(provideremail);
+        this.typeProviderPhone(providerphone);
+        this.typeFax(fax);
+        this.typeComment(notes);
+        //this.providerDropDown();
+        //this.providerDropDownOption();
+        this.clickSaveManually();
+        return new MyProvidersPage(driver);
     }
 
     public MyProvidersPage fillInProviderSearch(String firstname,String lastname,String organization,String cityname,String zip ){
@@ -147,9 +231,14 @@ public class MyProvidersPage {
         return new MyProvidersPage(driver);
     }
 
-
-
-
+    public String searchErrorText () {return searchError.getText();}
+    public String npiNumberColumnText () {return npiNumberColumn.getText();}
+    public String firstnameColumnText (){return firstnameColumn.getText();}
+    public String lastnameColumnText () {return lastNameColumn.getText();}
+    public String cityColumnText (){return cityColumn.getText();}
+    public String organizationColumnText () {return organizationNameColumn.getText();}
+    public String providerNameText (){return providerNameLabel.getText();}
+    public String provider2Text () {return providerNameLabel2.getText();}
 
 
 }

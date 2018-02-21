@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import sun.applet.Main;
 
 public class MainPage {
     private WebDriver driver;
@@ -31,9 +32,11 @@ public class MainPage {
     private WebElement smartRecordTab;
     @FindBy (xpath = "//a[text()='My Providers']")
     private WebElement myProvidersTab;
+    @FindBy(css = "#secure-doc>a")
+    private WebElement secureDocumentsTab;
 
     // secondary clickable tabs
-    @FindBy (xpath = "//a[@class='dropdown-toggle']")
+    @FindBy (css = ".dropdown-toggle")
     private WebElement myAccountDropDown;
     @FindBy (xpath = "//*[text()[contains(.,'Edit Contact Information')]]")
     private WebElement editContactInformationTab;
@@ -80,27 +83,31 @@ public class MainPage {
         myProvidersTab.click();
         return this;
     }
+    public MainPage clickSecureDocuments(){
+        secureDocumentsTab.click();
+        return this;
+    }
 
 
     // My Account tabs clicking
 
-    public MainPage goToEditContactInformation(){
+    public MainPage clickMyAccount(){
         myAccountDropDown.click();
+        return this;
+    }
+    public MainPage goToEditContactInformation(){
         editContactInformationTab.click();
         return this;
     }
     public MainPage goToEditLoginInformation(){
-        myAccountDropDown.click();
         editLoginCredsTab.click();
         return this;
     }
     public MainPage goToManageNotificationsTab(){
-        myAccountDropDown.click();
         manageNotificationsTab.click();
         return this;
     }
     public MainPage goToLogOutTab(){
-        myAccountDropDown.click();
         logOutTab.click();
         return this;
     }
