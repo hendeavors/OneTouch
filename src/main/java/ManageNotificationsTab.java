@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Random;
 
 public class ManageNotificationsTab {
-    private WebDriver driver;
-    public ManageNotificationsTab(WebDriver driver) {
+     public WebDriver driver;
+     public ManageNotificationsTab(WebDriver driver) {
         this.driver = driver;
     }
 

@@ -9,9 +9,10 @@ import java.util.List;
 import static java.lang.String.format;
 
 public class EditContactInfoTab {
-     WebDriver driver;
-     EditContactInfoTab(WebDriver driver) {
-    }
+     public WebDriver driver;
+     public EditContactInfoTab(WebDriver driver)   {
+         this.driver = driver;
+     }
 
     //Fields on the primary page
     @FindBy(css = "#update-contact-phone")

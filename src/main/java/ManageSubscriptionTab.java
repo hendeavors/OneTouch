@@ -1,19 +1,14 @@
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.security.cert.X509Certificate;
-import java.sql.Driver;
 import java.util.List;
 
-public class ManageSubscriptionsTab {
+public class ManageSubscriptionTab {
     WebDriver driver;
-    ManageSubscriptionsTab(WebDriver driver) {
+    ManageSubscriptionTab(WebDriver driver)  {
+        this.driver = driver;
     }
 
     //Buttons
@@ -101,32 +96,32 @@ public class ManageSubscriptionsTab {
     public String successText2 () {return successContainerVAT.getText();}
 
 
-    public ManageSubscriptionsTab typeCardNumber (String cardnumber){
+    public ManageSubscriptionTab typeCardNumber (String cardnumber){
         creditCardField.clear();
         creditCardField.sendKeys(cardnumber);
         return this;
     }
-    public ManageSubscriptionsTab typeSecurityCode (String securitycode){
+    public ManageSubscriptionTab typeSecurityCode (String securitycode){
         ccvField.clear();
         ccvField.sendKeys(securitycode);
         return this;
     }
-    public ManageSubscriptionsTab typeExpMonth (String expirationmonth){
+    public ManageSubscriptionTab typeExpMonth (String expirationmonth){
         expireMonth.clear();
         expireMonth.sendKeys(expirationmonth);
         return this;
     }
-    public ManageSubscriptionsTab typeExpYear (String expirationyear){
+    public ManageSubscriptionTab typeExpYear (String expirationyear){
         expireYear.clear();
         expireYear.sendKeys(expirationyear);
         return this;
     }
-    public ManageSubscriptionsTab typeZipCode (String zip){
+    public ManageSubscriptionTab typeZipCode (String zip){
         zipcodeField.clear();
         zipcodeField.sendKeys(zip);
         return this;
     }
-    public ManageSubscriptionsTab setCheckbox (boolean  value) {
+    public ManageSubscriptionTab setCheckbox (boolean  value) {
         if (!checkBox.isSelected() == value){
             checkBox.click();
         }
@@ -134,37 +129,37 @@ public class ManageSubscriptionsTab {
     }
 
 
-    public ManageSubscriptionsTab setCardValues (String cardnumber,String securitycode,
+    public ManageSubscriptionTab setCardValues (String cardnumber,String securitycode,
                                                  String expirationmonth, String expirationyear, String zip){
         this.typeCardNumber(cardnumber);
         this.typeSecurityCode(securitycode);
         this.typeExpMonth(expirationmonth);
         this.typeExpYear(expirationyear);
         this.typeZipCode(zip);
-        return new ManageSubscriptionsTab(driver);
+        return new ManageSubscriptionTab(driver);
     }
-    public ManageSubscriptionsTab clickUpdateCard(){
+    public ManageSubscriptionTab clickUpdateCard(){
         updatePlanButton.click();
         return this;
     }
 
-    public ManageSubscriptionsTab typeExtraBillingInfo (String info){
+    public ManageSubscriptionTab typeExtraBillingInfo (String info){
         extraBillingInfoField.clear();
         extraBillingInfoField.sendKeys(info);
         updateExtraBillingInfoButton.click();
         return this;
     }
 
-    public ManageSubscriptionsTab clickCancel (){
+    public ManageSubscriptionTab clickCancel (){
         cancelSubscriptionButton.click();
         return this;
     }
-     public ManageSubscriptionsTab clickSubmitCancellation(){
+     public ManageSubscriptionTab clickSubmitCancellation(){
        submitCancellationButton.click();
        return this;
      }
 
-    public ManageSubscriptionsTab clickDownLoad (){
+    public ManageSubscriptionTab clickDownLoad (){
         downloadReceiptButton.click();
         return this;
     }
@@ -175,7 +170,7 @@ public class ManageSubscriptionsTab {
     public boolean subscribePanelisDisplayed(){ return  subscribePanel.size()>0;    }
 
 
-    public ManageSubscriptionsTab hitResumeButtonifDisplayed (  ) {
+    public ManageSubscriptionTab hitResumeButtonifDisplayed (  ) {
         if (resumeButtonIsDisplayed())
         {
             resumeSubscriptionButton.click();
@@ -186,8 +181,8 @@ public class ManageSubscriptionsTab {
         return this;
     }
 
-    public ManageSubscriptionsTab hitCancelButtonifDisplayed (  ) {
-        if (cancelSubscriptionIsDisplayed())
+    public ManageSubscriptionTab hitCancelButtonifDisplayed (  ) {
+        if (cancelSubscriptionIsDisplayed() == true)
               {
             cancelSubscriptionButton.click();
               }
@@ -198,12 +193,9 @@ public class ManageSubscriptionsTab {
     }
 
 
-     public ManageSubscriptionsTab clickResumeButton (){
+     public ManageSubscriptionTab clickResumeButton (){
         resumeSubscriptionButton.click();
         return this;
      }
-
-
-
 
 }

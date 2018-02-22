@@ -10,9 +10,11 @@ import java.util.List;
 
 public class SmartRecordPage {
 
-    private WebDriver driver;
-    public SmartRecordPage(WebDriver driver) {
+    public WebDriver driver;
+    public SmartRecordPage(WebDriver driver)   {
+        this.driver = driver;
     }
+
      //elements
     @FindBy(xpath = ".//*[@id='smart-record-content']/h3[1]/a")
     private WebElement moreInfoButton1;

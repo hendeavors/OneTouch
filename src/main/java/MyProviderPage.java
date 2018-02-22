@@ -4,9 +4,11 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class MyProviderPage {
-    WebDriver driver;
-    MyProviderPage (WebDriver driver) {
+    public WebDriver driver;
+    public MyProviderPage (WebDriver driver)   {
+        this.driver = driver;
     }
+
     //Buttons in the main search window
     @FindBy(xpath = ".//*[@id='providerSearch']")
     private WebElement searchButton;

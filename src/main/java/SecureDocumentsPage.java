@@ -14,8 +14,9 @@ import java.util.Date;
 import java.util.List;
 
 public class SecureDocumentsPage {
-    private WebDriver driver;
-    public SecureDocumentsPage(WebDriver driver) {
+    public WebDriver driver;
+    public SecureDocumentsPage(WebDriver driver)   {
+        this.driver = driver;
     }
 
     @FindBy(xpath = ".//a[@class='new-secure-document-actions']/i[1]")

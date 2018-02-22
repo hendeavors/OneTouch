@@ -4,9 +4,11 @@ import org.openqa.selenium.support.FindBy;
 import sun.applet.Main;
 
 public class MainPage {
-    private WebDriver driver;
-    public MainPage (WebDriver driver) {
+    public WebDriver driver;
+    public MainPage (WebDriver driver)    {
+        this.driver = driver;
     }
+
     //text labels to check
     @FindBy (xpath = ".//*[@id='patient-header']/div[2]/div[1]/span[1]")
     private WebElement hicnoLabel;

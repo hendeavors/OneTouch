@@ -4,10 +4,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
 
-    private WebDriver driver;
-    public LoginPage(WebDriver driver){
-
+    public WebDriver driver;
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
     }
+
     @FindBy(xpath = "//input[@name='username']")
     private WebElement usernameField;
     @FindBy(xpath = "//input[@name='password']")

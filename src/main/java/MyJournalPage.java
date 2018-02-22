@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.sql.Driver;
 
 public class MyJournalPage {
-    private WebDriver driver;
+    public WebDriver driver;
     public MyJournalPage(WebDriver driver) {
    }
    // main elements

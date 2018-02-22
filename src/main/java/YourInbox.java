@@ -7,8 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import java.sql.Driver;
 
 public class YourInbox {
-    private WebDriver driver;
-    public YourInbox(Driver driver) {
+    public WebDriver driver;
+    public YourInbox(WebDriver driver)   {
+        this.driver = driver;
     }
 
     //Folders and Buttons

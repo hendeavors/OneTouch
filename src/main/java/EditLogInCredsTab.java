@@ -5,10 +5,11 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class EditLogInCredsTab {
-    WebDriver driver;
-    public EditLogInCredsTab(WebDriver driver) {
+    public WebDriver driver;
+    public EditLogInCredsTab(WebDriver driver)  {
         this.driver = driver;
     }
+
     // footers
     @FindBy (xpath = "//div[@class='container']/div[@class='row']/div[1]")
     private WebElement llcBottomLabel;

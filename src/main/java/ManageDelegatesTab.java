@@ -11,8 +11,9 @@ import java.util.Random;
 import java.sql.Driver;
 
 public class ManageDelegatesTab {
-     WebDriver driver;
-    public ManageDelegatesTab(WebDriver driver) {
+    public WebDriver driver;
+    public ManageDelegatesTab(WebDriver driver)   {
+        this.driver = driver;
     }
 
     //Buttons
