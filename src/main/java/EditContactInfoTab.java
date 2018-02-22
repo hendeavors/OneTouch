@@ -1,21 +1,16 @@
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Driver;
 import java.util.List;
 
 import static java.lang.String.format;
-import static org.openqa.selenium.By.xpath;
 
 public class EditContactInfoTab {
-    WebDriver driver;
-    public EditContactInfoTab(WebDriver driver) {
-
-        this.driver = driver;
+     WebDriver driver;
+     EditContactInfoTab(WebDriver driver) {
     }
 
     //Fields on the primary page

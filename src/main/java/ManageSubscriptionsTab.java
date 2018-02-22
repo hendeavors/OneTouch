@@ -12,8 +12,8 @@ import java.sql.Driver;
 import java.util.List;
 
 public class ManageSubscriptionsTab {
-    private WebDriver driver;
-    public ManageSubscriptionsTab(WebDriver driver) {
+    WebDriver driver;
+    ManageSubscriptionsTab(WebDriver driver) {
     }
 
     //Buttons
@@ -32,11 +32,11 @@ public class ManageSubscriptionsTab {
     @FindBy(xpath = "//resume-subscription/div/div[2]/standard-form/form/div/div/button")
     private WebElement resumeSubscriptionButton;
     @FindBy(xpath = "//resume-subscription/div/div[2]/standard-form/form/div/div/button")
-    List<WebElement> resumeButton;
+    private List<WebElement> resumeButton;
     @FindBy(xpath = "//button[@class='btn btn-danger btn-xs pull-right']")
-    List<WebElement> cancelButton;
+    private List<WebElement> cancelButton;
     @FindBy(xpath = ".//*[@id='spark-settings-subscription-screen']/div/div[1]/div[1]")
-    List<WebElement> subscribePanel;
+    private List<WebElement> subscribePanel;
     @FindBy (xpath = "//div[@class='panel-heading' and text()='Current Subscription']")
     private WebElement subscriptionPanelHeader;
     @FindBy (xpath = "//div[@class='panel-heading' and text()='Subscribe']")
@@ -169,14 +169,14 @@ public class ManageSubscriptionsTab {
         return this;
     }
 
-    public boolean yellowContainerIsDisplayed(){ return yellowContainer.isDisplayed() == true;    }
-    public boolean resumeButtonIsDisplayed(){return resumeButton.size()>0 == true;    }
-    public boolean cancelSubscriptionIsDisplayed(){ return cancelButton.size()>0 == true;    }
-    public boolean subscribePanelisDisplayed(){ return  subscribePanel.size()>0 == true;    }
+    public boolean yellowContainerIsDisplayed(){ return yellowContainer.isDisplayed();    }
+    public boolean resumeButtonIsDisplayed(){return resumeButton.size()>0;    }
+    public boolean cancelSubscriptionIsDisplayed(){ return cancelButton.size()>0;    }
+    public boolean subscribePanelisDisplayed(){ return  subscribePanel.size()>0;    }
 
 
     public ManageSubscriptionsTab hitResumeButtonifDisplayed (  ) {
-        if (resumeButtonIsDisplayed()== true)
+        if (resumeButtonIsDisplayed())
         {
             resumeSubscriptionButton.click();
         }
@@ -187,7 +187,7 @@ public class ManageSubscriptionsTab {
     }
 
     public ManageSubscriptionsTab hitCancelButtonifDisplayed (  ) {
-        if (cancelSubscriptionIsDisplayed()== true)
+        if (cancelSubscriptionIsDisplayed())
               {
             cancelSubscriptionButton.click();
               }

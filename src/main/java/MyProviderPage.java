@@ -1,13 +1,11 @@
-import com.sun.xml.internal.bind.v2.WellKnownNamespace;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import sun.swing.plaf.synth.DefaultSynthStyle;
 
-public class MyProvidersPage {
-    private WebDriver driver;
-    public MyProvidersPage (WebDriver driver) {
+
+public class MyProviderPage {
+    WebDriver driver;
+    MyProviderPage (WebDriver driver) {
     }
     //Buttons in the main search window
     @FindBy(xpath = ".//*[@id='providerSearch']")
@@ -107,105 +105,104 @@ public class MyProvidersPage {
 
 
 
-    public MyProvidersPage typeFirstName(String firstname){
+    public MyProviderPage typeFirstName(String firstname){
         firstNameField.sendKeys(firstname);
         return this;
     }
-    public MyProvidersPage typeLastName(String lastname){
+    public MyProviderPage typeLastName(String lastname){
         lastNameField.sendKeys(lastname);
         return this;
     }
-    public MyProvidersPage typeOrganization (String organization){
+    public MyProviderPage typeOrganization (String organization){
         organizationNameField.sendKeys(organization);
         return this;
     }
-    public MyProvidersPage typeCity (String cityname){
+    public MyProviderPage typeCity (String cityname){
         cityField.sendKeys(cityname);
         return this;
     }
-    public MyProvidersPage typeZip (String zip){
+    public MyProviderPage typeZip (String zip){
         postalCodeField.sendKeys(zip);
         return this;
     }
-    public MyProvidersPage chooseState(){
+    public MyProviderPage chooseState(){
         stateDropDown.click();
         stateOption.click();
         return this;
     }
-    public MyProvidersPage chooseCountry(){
+    public MyProviderPage chooseCountry(){
         countryDropDown.click();
         conutryOption.click();
         return this;
     }
-    public MyProvidersPage hitSearchButton(){
+    public MyProviderPage hitSearchButton(){
         searchButton.click();
         return this;
     }
 
-    public MyProvidersPage hitAddProviderManually(){
+    public MyProviderPage hitAddProviderManually(){
         addManuallyButton.click();
         return this;
     }
-    public MyProvidersPage hitAddProvider(){
+    public MyProviderPage hitAddProvider(){
         addProviderButton.click();
         return this;
     }
-    public MyProvidersPage hitOkError() {
+    public MyProviderPage hitOkError() {
         okButtonForError.click();
         return this;
     }
-    public MyProvidersPage setLastDate(){
+    public MyProviderPage setLastDate(){
         calendarLastAppointmentSelect.click();
         calendarLastAppointSet.click();
         return this;
     }
-    public MyProvidersPage setNextDate() {
+    public MyProviderPage setNextDate() {
         calendarNextAppointmentSelect.click();
         calendarNextAppointSet.click();
         return this;
     }
-    public MyProvidersPage hitSaveManuallyAddedProvider(){
+    public MyProviderPage hitSaveManuallyAddedProvider(){
         saveManuallyAddedProvider.click();
         return this;
     }
-    public MyProvidersPage providerDropDown(){
+    public MyProviderPage providerDropDown(){
         providerTypeDropDown.click();
         return this;
     }
-    public MyProvidersPage providerDropDownOption(){
+    public MyProviderPage providerDropDownOption(){
         providerTypeOption.click();
         return this;
     }
-    public MyProvidersPage typeProviderName (String providername){
+    public MyProviderPage typeProviderName (String providername){
         providerNameField.sendKeys( providername);
         return this;
     }
-    public MyProvidersPage typeProviderCompany (String companyname){
+    public MyProviderPage typeProviderCompany (String companyname){
         providerCompanyField.sendKeys( companyname);
         return this;
     }
-    public MyProvidersPage typeProviderEmail (String provideremail){
+    public MyProviderPage typeProviderEmail (String provideremail){
         providerEmailField.sendKeys( provideremail);
         return this;
     }
-    public MyProvidersPage typeProviderPhone (String providerPhone){
+    public MyProviderPage typeProviderPhone (String providerPhone){
         providerPhoneField.sendKeys( providerPhone);
         return this;
     }
-    public MyProvidersPage typeFax (String fax){
+    public MyProviderPage typeFax (String fax){
         faxField.sendKeys( fax);
         return this;
     }
-    public MyProvidersPage typeComment (String notes){
+    public MyProviderPage typeComment (String notes){
         addCommentBox.sendKeys( notes);
         return this;
     }
-    public MyProvidersPage clickSaveManually ( ){
+    public MyProviderPage clickSaveManually ( ){
         saveManuallyAddedProvider.click();
         return this;
     }
-
-    public MyProvidersPage addProviderManually(String providername, String companyname, String provideremail,
+    public MyProviderPage addProviderManually(String providername, String companyname, String provideremail,
                                                String providerphone, String fax, String notes){
         this.typeProviderName(providername);
         this.typeProviderCompany(companyname);
@@ -216,10 +213,10 @@ public class MyProvidersPage {
         //this.providerDropDown();
         //this.providerDropDownOption();
         this.clickSaveManually();
-        return new MyProvidersPage(driver);
+        return new MyProviderPage(driver);
     }
 
-    public MyProvidersPage fillInProviderSearch(String firstname,String lastname,String organization,String cityname,String zip ){
+    public MyProviderPage fillInProviderSearch(String firstname,String lastname,String organization,String cityname,String zip ){
         this.typeFirstName(firstname);
         this.typeLastName(lastname);
         this.typeOrganization(organization);
@@ -228,7 +225,7 @@ public class MyProvidersPage {
         this.chooseCountry();
         this.chooseState();
         this.hitSearchButton();
-        return new MyProvidersPage(driver);
+        return new MyProviderPage(driver);
     }
 
     public String searchErrorText () {return searchError.getText();}

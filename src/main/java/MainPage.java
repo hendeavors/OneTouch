@@ -79,7 +79,7 @@ public class MainPage {
         smartRecordTab.click();
         return this;
     }
-    public MainPage clickMyProviderstab(){
+    public MainPage clickMyProvidertab(){
         myProvidersTab.click();
         return this;
     }
