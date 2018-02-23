@@ -83,24 +83,6 @@
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
                     </properties>
-                    <configuration>
-                        <argLine>
-                            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                            -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
-                        </argLine>
-                    </configuration>
-                    <configuration>
-                        <testFailureIgnore>false</testFailureIgnore>
-                        <argLine>
-                            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                        </argLine>
-                        <systemProperties>
-                            <property>
-                                <name>junit.jupiter.extensions.autodetection.enabled</name>
-                                <value>true</value>
-                            </property>
-                        </systemProperties>
-                    </configuration>
                 </configuration>
                 <dependencies>
                     <dependency>
