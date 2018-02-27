@@ -3,6 +3,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import sun.applet.Main;
 
+import java.util.List;
+
 public class MainPage {
     public WebDriver driver;
     public MainPage (WebDriver driver)    {
@@ -38,8 +40,10 @@ public class MainPage {
     private WebElement secureDocumentsTab;
 
     // secondary clickable tabs
-    @FindBy (css = ".dropdown-toggle")
+    @FindBy (xpath = ".//*[@id='app-navbar-collapse']/ul[2]/li[2]/a")
     private WebElement myAccountDropDown;
+    @FindBy (xpath = ".//*[@id='app-navbar-collapse']/ul[2]/li[2]/ul/li[5]/a")
+    private List<WebElement> yourInboxButtonList;
     @FindBy (xpath = "//*[text()[contains(.,'Edit Contact Information')]]")
     private WebElement editContactInformationTab;
     @FindBy (xpath = "//*[text()[contains(.,'Edit Log In Credentials')]]")
@@ -51,6 +55,7 @@ public class MainPage {
     @FindBy (xpath = "//div[@class='todo-nav-item']/a[@href='/home#todo-tab']")
     private WebElement toCompleteButton;
 
+    public boolean yourInboxIsDisplayed ( ){ return yourInboxButtonList.size()>0;}
 
     public String getProviderText () {return providerLabel.getText();}
     public String getPracticeText () {return practiceLabel.getText();}

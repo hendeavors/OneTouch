@@ -1,10 +1,12 @@
 
 
+import net.bytebuddy.agent.builder.AgentBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.sql.Driver;
+import java.util.List;
 
 public class YourInbox {
     public WebDriver driver;
@@ -56,14 +58,61 @@ public class YourInbox {
     private WebElement moveToTrashOption;
 
     //messages
-    @FindBy(css = ".view-message.dont-show.text-nowrap")
+    @FindBy (css = ".view-message.dont-show.text-nowrap")
     private WebElement messageContainer;
-    @FindBy(xpath = ".//*[@id='replyboxcontent']/div/span[1]")
+    @FindBy (xpath = ".//*[@id='replyboxcontent']/div/span[1]")
     private WebElement replyLink;
-    @FindBy(xpath = ".//*[@id='replyboxcontent']/div/span[3]")
+    @FindBy (xpath = ".//*[@id='replyboxcontent']/div/span[3]")
     private WebElement forwardLink;
-    @FindBy(xpath = "//a[@class='btn btn-default reply-to']")
+    @FindBy (xpath = "//a[@class='btn btn-default reply-to']")
     private WebElement replyButton;
+    @FindBy (xpath = ".//*[@id='messagebody']")
+    private WebElement messageField;
+    @FindBy (xpath = ".//*[@id='select2-recipients-results']/li")
+    private WebElement recepintsSearchDropDown;
+    @FindBy (xpath = "//input[@class='select2-search__field' and @role='textbox']")
+    private WebElement toField;
+
+
+
+
+    //Boolean methods
+
+    public boolean theres6Folders () {return foldersList.size()== 6;}
+
+    // action methods
+
+    public YourInbox clickComposeEmail () {
+        composeButton.click();
+        return this;
+    }
+    public YourInbox clickRecepientsDropDown (){
+        recepintsSearchDropDown.click();
+        return this;
+    }
+
+
+
+
+    // type methods
+
+    public YourInbox typeAMessage(String message){
+        messageField.clear();
+        messageField.sendKeys(message);
+        return this;
+    }
+    public YourInbox typeRecepientsAddress (String address) {
+        toField.sendKeys(address);
+        return this;
+    }
+
+
+
+    //
+    @FindBy(xpath = "//li[@class='']")
+    private List<WebElement> foldersList;
+
+
 
 }
 
