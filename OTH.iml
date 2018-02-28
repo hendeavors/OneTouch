@@ -132,7 +132,6 @@
     <orderEntry type="library" name="Maven: org.jvnet.jaxb2_commons:jaxb2-basics-runtime:0.9.3" level="project" />
     <orderEntry type="library" name="Maven: ru.qatools.commons:properties:2.0.RC5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />
-    <orderEntry type="library" name="Maven: ru.yandex.qatools.allure:allure-jenkins-plugin:2.26.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-junit4:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: io.qameta.allure:allure-java-commons:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: io.qameta.allure:allure2-model-api:1.0-BETA6" level="project" />
@@ -141,11 +140,9 @@
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.10" level="project" />
     <orderEntry type="library" name="Maven: org.jooq:joor:0.9.6" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-junit5:2.6.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-junit-platform:2.6.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-launcher:1.0.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.0.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure-junit5:2.0-BETA21" level="project" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure-junit-platform:2.0-BETA21" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-launcher:1.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-junit-adaptor:1.5.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-java-aspects:1.5.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ru.yandex.qatools.allure:allure-java-adaptor-api:1.5.4" level="project" />
@@ -258,10 +255,12 @@
     <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.58" level="project" />
     <orderEntry type="library" name="Maven: net.lightbody.bmp:mitm:2.1.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.codeborne:phantomjsdriver:1.4.4" level="project" />
-    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-api:5.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.opentest4j:opentest4j:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-engine:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: io.qameta.allure:allure-cucumber-jvm:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: info.cukes:cucumber-core:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: info.cukes:cucumber-html:0.2.3" level="project" />

@@ -2,39 +2,60 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
-import static java.lang.String.format;
 
 public class EditContactInfoTab {
      public WebDriver driver;
      public EditContactInfoTab(WebDriver driver)   {
+
          this.driver = driver;
      }
 
     //Fields on the primary page
-    @FindBy(css = "#update-contact-phone")
+    @FindBy(xpath = ".//*[@id='update-contact-phone']")
     private WebElement homePhoneField;
-    @FindBy(css = "#update-contact-business")
+    @FindBy(xpath = ".//*[@id='update-contact-business']")
     private WebElement businessPhoneField;
-    @FindBy(css = "#update-contact-email")
+    @FindBy(xpath = ".//*[@id='update-contact-email']")
     private WebElement emailField;
-    @FindBy(css = "#update-contact-mobile")
+    @FindBy(xpath = ".//*[@id='update-contact-mobile']")
     private WebElement mobilePhoneField;
-    @FindBy(css = "#update-contact-fax")
+    @FindBy(xpath = ".//*[@id='update-contact-fax']")
     private WebElement faxField;
-    @FindBy(css = "#update-contact-address")
+    @FindBy(xpath = ".//*[@id='update-contact-address']")
     private WebElement addressField;
-    @FindBy(css = "#update-contact-address2")
+    @FindBy(xpath = ".//*[@id='update-contact-address2']")
     private WebElement address2Field;
-    @FindBy(css = "#update-contact-city")
+    @FindBy(xpath = ".//*[@id='update-contact-city']")
     private WebElement cityField;
-    @FindBy(css = "#update-contact-zip")
+    @FindBy(xpath = ".//*[@id='update-contact-zip']")
     private WebElement zipCodeField;
-    @FindBy(css = ".k-input.form-control.statesdd")
+    @FindBy(css = "//input[@name='statecode_input']")
     private WebElement stateInput;
+
+    //Fields on the secondary page
+
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-phone']")
+    private WebElement homePhoneFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-business']")
+    private WebElement businessPhoneFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-email']")
+    private WebElement emailFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-mobile']")
+    private WebElement mobilePhoneFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-fax']")
+    private WebElement faxFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-address']")
+    private WebElement addressFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-address2']")
+    private WebElement address2FieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-city']")
+    private WebElement cityFieldSecondary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//input[@id='update-contact-zip']")
+    private WebElement zipCodeFieldSecondary;
+    @FindBy(css = "//div[@id='collapseTwo']//input[@class='k-input form-control statesdd']")
+    private WebElement stateInputSecondary;
 
 
     //Wordings
@@ -43,7 +64,9 @@ public class EditContactInfoTab {
 
     //Button
     @FindBy(css = ".btn.btn-primary.pull-right")
-    private WebElement saveButton;
+    private WebElement saveButtonPrimary;
+    @FindBy(xpath = "//div[@id='collapseTwo']//button[@class='btn btn-primary pull-right']")
+    private WebElement saveButtonSecondary;
 
     //Collapsing Headings
     @FindBy(xpath = ".//*[@id='headingOne']/h4/a")
@@ -110,111 +133,206 @@ public class EditContactInfoTab {
         return getErrors.size() == 5;
     }
 
-    public EditContactInfoTab typeHomePhone (String number){
+    public EditContactInfoTab typeHomePhonePrimary (String number){
         homePhoneField.sendKeys(number);
         return this;
     }
-    public EditContactInfoTab clearHomePhone (){
+    public EditContactInfoTab clearHomePhonePrimary (){
         homePhoneField.clear();
         return this;
     }
-    public EditContactInfoTab typeMobilePhone (String mobilenumber){
+    public EditContactInfoTab typeMobilePhonePrimary (String mobilenumber){
         mobilePhoneField.sendKeys(mobilenumber);
         return this;
     }
-    public EditContactInfoTab clearMobilePhone (){
+    public EditContactInfoTab clearMobilePhonePrimary (){
         mobilePhoneField.clear();
         return this;
     }
-    public EditContactInfoTab typeBusinessPhone (String businessNumber){
+    public EditContactInfoTab typeBusinessPhonePrimary (String businessNumber){
         businessPhoneField.sendKeys(businessNumber);
         return this;
     }
-    public EditContactInfoTab clearBusinessPhone (){
+    public EditContactInfoTab clearBusinessPhonePrimary (){
         businessPhoneField.clear();
         return this;
     }
-    public EditContactInfoTab typeFax (String faxNumber){
+    public EditContactInfoTab typeFaxPrimary (String faxNumber){
         faxField.sendKeys(faxNumber);
         return this;
     }
-    public EditContactInfoTab clearFax (){
+    public EditContactInfoTab clearFaxPrimary (){
         faxField.clear();
         return this;
     }
-    public EditContactInfoTab typeAddress (String address1){
+    public EditContactInfoTab typeAddressPrimary (String address1){
         addressField.sendKeys(address1);
         return this;
     }
-    public EditContactInfoTab clearAddress (){
+    public EditContactInfoTab clearAddressPrimary (){
         addressField.clear();
         return this;
     }
-    public EditContactInfoTab typeAddress2 (String address2){
+    public EditContactInfoTab typeAddress2Primary (String address2){
         address2Field.sendKeys(address2);
         return this;
     }
-    public EditContactInfoTab clearAddress2 (){
+    public EditContactInfoTab clearAddress2Primary (){
         address2Field.clear();
         return this;
     }
-    public EditContactInfoTab typeCity (String city){
+    public EditContactInfoTab typeCityPrimary (String city){
         cityField.sendKeys(city);
         return this;
     }
-    public EditContactInfoTab clearCity (){
+    public EditContactInfoTab clearCityPrimary (){
         cityField.clear();
         return this;
     }
-    public EditContactInfoTab typeZip (String zipcode){
+    public EditContactInfoTab typeZipPrimary (String zipcode){
         zipCodeField.sendKeys(zipcode);
         return this;
     }
-    public EditContactInfoTab clearZip (){
+    public EditContactInfoTab clearZipPrimary (){
         zipCodeField.clear();
         return this;
     }
-    public EditContactInfoTab typeState(String state){
+    public EditContactInfoTab typeStatePrimary(String state){
         stateInput.clear();
         stateInput.sendKeys(state);
         return this;
     }
 
 
-    public EditContactInfoTab filloutTheFields(String number, String mobileNumber,
+    public EditContactInfoTab filloutTheFieldsprimary(String number, String mobileNumber,
         String businessNumber, String faxNumber, String address1, String address2, String city,String zipcode){
-        this.typeHomePhone(number);
-        this.typeMobilePhone(mobileNumber);
-        this.typeBusinessPhone(businessNumber);
-        this.typeFax(faxNumber);
-        this.typeAddress(address1);
-        this.typeAddress2(address2);
-        this.typeCity(city);
-        this.typeZip(zipcode);
+        this.typeHomePhonePrimary(number);
+        this.typeMobilePhonePrimary(mobileNumber);
+        this.typeBusinessPhonePrimary(businessNumber);
+        this.typeFaxPrimary(faxNumber);
+        this.typeAddressPrimary(address1);
+        this.typeAddress2Primary(address2);
+        this.typeCityPrimary(city);
+        this.typeZipPrimary(zipcode);
         return new EditContactInfoTab(driver);
     }
-    public EditContactInfoTab pressSaveButton(){
-        saveButton.click();
+    public EditContactInfoTab pressSaveButtonPrimaryTab(){
+        saveButtonPrimary.click();
         return this;
     }
+    public EditContactInfoTab pressSaveButtonSecondaryTab(){
+        saveButtonSecondary.click();
+        return this;
+    }
+
     public EditContactInfoTab clickSecondaryAddress(){
         secondaryHeadingTab.click();
-        new WebDriverWait(driver,5);
         return this;
     }
 
-    public EditContactInfoTab clearAllTheFields(){
-        this.clearZip();
-        this.clearAddress();
-        this.clearAddress2();
-        this.clearBusinessPhone();
-        this.clearCity();
-        this.clearFax();
-        this.clearHomePhone();
-        this.clearMobilePhone();
+    public EditContactInfoTab clearAllThePrimaryFields(){
+        this.clearZipPrimary();
+        this.clearAddressPrimary();
+        this.clearAddress2Primary();
+        this.clearBusinessPhonePrimary();
+        this.clearCityPrimary();
+        this.clearFaxPrimary();
+        this.clearHomePhonePrimary();
+        this.clearMobilePhonePrimary();
         return new EditContactInfoTab(driver);
     }
-
+    public EditContactInfoTab clearAllTheSecondaryFields(){
+        this.clearZipSecondary();
+        this.clearAddressSecondary();
+        this.clearAddress2Secondary();
+        this.clearBusinessPhoneSecondary();
+        this.clearCitySecondary();
+        this.clearFaxSecondary();
+        this.clearHomePhoneSecondary();
+        this.clearMobilePhoneSecondary();;
+        return new EditContactInfoTab(driver);
+    }
+    public EditContactInfoTab filloutTheFieldsSecondary(String number2, String mobileNumber2,
+                                                      String businessNumber2, String faxNumber2, String address12, String address22, String city2,String zipcode2){
+        this.typeHomePhoneSecondary(number2);
+        this.typeMobilePhoneSecondary(mobileNumber2);
+        this.typeBusinessPhoneSecondary(businessNumber2);
+        this.typeFaxSecondary(faxNumber2);
+        this.typeAddressSecondary(address12);
+        this.typeAddress2Secondary(address22);
+        this.typeCitySecondary(city2);
+        this.typeZipSecondary(zipcode2);
+        return new EditContactInfoTab(driver);
+    }
+    public EditContactInfoTab typeHomePhoneSecondary (String number2){
+        homePhoneFieldSecondary.sendKeys(number2);
+        return this;
+    }
+    public EditContactInfoTab clearHomePhoneSecondary (){
+        homePhoneFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeMobilePhoneSecondary (String mobilenumber2){
+        mobilePhoneFieldSecondary.sendKeys(mobilenumber2);
+        return this;
+    }
+    public EditContactInfoTab clearMobilePhoneSecondary (){
+        mobilePhoneFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeBusinessPhoneSecondary (String businessNumber2){
+        businessPhoneFieldSecondary.sendKeys(businessNumber2);
+        return this;
+    }
+    public EditContactInfoTab clearBusinessPhoneSecondary (){
+        businessPhoneFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeFaxSecondary (String faxNumber2){
+        faxFieldSecondary.sendKeys(faxNumber2);
+        return this;
+    }
+    public EditContactInfoTab clearFaxSecondary (){
+        faxFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeAddressSecondary (String address12){
+        addressFieldSecondary.sendKeys(address12);
+        return this;
+    }
+    public EditContactInfoTab clearAddressSecondary (){
+        addressFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeAddress2Secondary (String address22){
+        address2FieldSecondary.sendKeys(address22);
+        return this;
+    }
+    public EditContactInfoTab clearAddress2Secondary (){
+        address2FieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeCitySecondary (String city2){
+        cityFieldSecondary.sendKeys(city2);
+        return this;
+    }
+    public EditContactInfoTab clearCitySecondary (){
+        cityFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeZipSecondary (String zipcode2){
+        zipCodeFieldSecondary.sendKeys(zipcode2);
+        return this;
+    }
+    public EditContactInfoTab clearZipSecondary (){
+        zipCodeFieldSecondary.clear();
+        return this;
+    }
+    public EditContactInfoTab typeStateSecondary(String state2){
+        stateInputSecondary.clear();
+        stateInputSecondary.sendKeys(state2);
+        return this;
+    }
 
 
 
