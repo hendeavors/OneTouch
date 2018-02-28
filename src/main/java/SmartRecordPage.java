@@ -208,14 +208,6 @@ public class SmartRecordPage {
 
 
 
-
-
-
-
-
-
-
-
     //objects
     @FindBy(xpath = ".//*[@id='toast-container']/div")
     private WebElement greenContainer;
@@ -237,9 +229,6 @@ public class SmartRecordPage {
     public boolean providersAreNOTDisplayed () {return providerPropertiesDropDown.size()<1;}
     public boolean ccdAreNOTDiplayed () {return viewButtonsList.size()<1;}
     public boolean claimsWindowIsDisplayed () {return claimsWindow.isDisplayed();}
-
-
-
 
 
     public boolean myCCDWindowIsDisplayed () {return myCCDWindow.isDisplayed();}
