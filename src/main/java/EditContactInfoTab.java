@@ -63,7 +63,7 @@ public class EditContactInfoTab {
     private WebElement successWarning;
 
     //Button
-    @FindBy(css = ".btn.btn-primary.pull-right")
+    @FindBy(xpath = "//div[@id='collapseOne']//button[@class='btn btn-primary pull-right']")
     private WebElement saveButtonPrimary;
     @FindBy(xpath = "//div[@id='collapseTwo']//button[@class='btn btn-primary pull-right']")
     private WebElement saveButtonSecondary;
