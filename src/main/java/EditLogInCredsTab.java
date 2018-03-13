@@ -36,7 +36,7 @@ public class EditLogInCredsTab {
     private WebElement usernameTab1;
     @FindBy(xpath = "//div[@id='collapseOne']//input[@name='email']")
     private WebElement emailTab1;
-    @FindBy(xpath = ".//*[@id='send-verify-button']")
+    @FindBy(xpath = "//div[@id='collapseOne']//button[@class='btn btn-primary']")
     private WebElement saveButtonTab1;
 
     // Fields Tab2
@@ -70,6 +70,16 @@ public class EditLogInCredsTab {
     public boolean errorIsVisible() {
         return errorText.isDisplayed();
     }
+
+    @FindBy(xpath = "//div[@id='collapseThree']//strong")
+    public WebElement errorTextTab3;
+
+    public String errorText3() {return errorTextTab3.getText(); }
+
+    public boolean errorIsVisible3 () {return errorTextTab3.isDisplayed(); }
+
+
+
 
     @FindBy(xpath = ".//*[@id='main-app-panel-container']/div/div[2]/div[1]/div")
     private WebElement messageContainer;

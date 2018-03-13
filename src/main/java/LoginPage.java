@@ -9,7 +9,7 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//input[@name='username']")
+    @FindBy(xpath = "//div[@class='panel-body']//input[@name='username']")
     private WebElement usernameField;
     @FindBy(xpath = "//input[@name='password']")
     private WebElement passwordField;

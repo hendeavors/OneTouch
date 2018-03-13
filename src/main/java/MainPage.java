@@ -10,14 +10,7 @@ public class MainPage {
     public MainPage (WebDriver driver)    {
         this.driver = driver;
     }
-
-    //text labels to check
-    @FindBy (xpath = ".//*[@id='patient-header']/div[2]/div[1]/span[1]")
-    private WebElement hicnoLabel;
-    @FindBy (xpath = ".//*[@id='patient-header']/div[2]/div[2]/span[1]")
-    private WebElement providerLabel;
-    @FindBy (xpath = ".//*[@id='patient-header']/div[2]/div[3]/span[1]")
-    private WebElement practiceLabel;
+    // Footers
     @FindBy (xpath = "//div[@class='container']/div[@class='row']/div[1]")
     private WebElement llcBottomLabel;
     @FindBy (xpath = "//a[@title='privacy policy']")
@@ -55,20 +48,63 @@ public class MainPage {
     @FindBy (xpath = "//div[@class='todo-nav-item']/a[@href='/home#todo-tab']")
     private WebElement toCompleteButton;
 
-    public boolean yourInboxIsDisplayed ( ){ return yourInboxButtonList.size()>0;}
+    // videos
+    @FindBy (xpath = ".//*[@id='welcome-tab']/div/section[1]")
+    private WebElement enrollmentVideo;
+    @FindBy (xpath = ".//*[@id='welcome-tab']/div/section[1]")
+    private WebElement thingsToCompleteVideo;
+    @FindBy (xpath = ".//*[@id='welcome-tab']/div/section[1]")
+    private WebElement myJournalVideo;
+    @FindBy (xpath = ".//*[@id='welcome-tab']/div/section[1]")
+    private WebElement smartRecordVideo;
+    @FindBy (xpath = ".//*[@id='welcome-tab']/div/section[1]")
+    private WebElement secureDocumentsVideo;
+    @FindBy (xpath = ".//*[@id='welcome-tab']/div/section[1]")
+    private WebElement accauntSettingsVideo;
 
-    public String getProviderText () {return providerLabel.getText();}
-    public String getPracticeText () {return practiceLabel.getText();}
-    public String getTheHICNOText () {return hicnoLabel.getText();}
-    public String getWelcomeTabText () {return welcomeTab.getText();}
-    public String getThingsToCompeteText () {return thingsToCompleteTab.getText();}
-    public String getMyJournalTabText () {return myJournalTab.getText();}
-    public String getSmartRecordTabText () {return smartRecordTab.getText();}
-    public String getMyProvidersTabText () {return myProvidersTab.getText();}
+    // header labels
+    @FindBy (xpath = "//span[@class='patient-name']")
+    private WebElement nameLabel;
+    @FindBy (xpath = "//span[text()='Phone']")
+    private WebElement phoneLabel;
+    @FindBy (xpath = "//span[text()='DOB']")
+    private WebElement DOBlabel;
+    @FindBy (xpath = "//span[text()='Primary Insurance Number']")
+    private WebElement insurnaceNumLabel;
+    @FindBy (xpath = "//span[text()='Provider']")
+    private WebElement providerLabel;
+    @FindBy (xpath = "//span[text()='Enrolling Practice']")
+    private WebElement enrollingPracticeLabel;
+
+    public boolean label1IsDisolayed () { return nameLabel.isDisplayed();}
+    public boolean label2IsDisolayed () { return phoneLabel.isDisplayed();}
+    public boolean label3IsDisolayed () { return DOBlabel.isDisplayed();}
+    public boolean label4IsDisolayed () { return insurnaceNumLabel.isDisplayed();}
+    public boolean label5IsDisolayed () { return providerLabel.isDisplayed();}
+    public boolean label6IsDisolayed () { return enrollingPracticeLabel.isDisplayed();}
+
+
+    public boolean video1IsDisplayed () { return enrollmentVideo.isDisplayed();}
+    public boolean video2IsDisplayed () { return thingsToCompleteVideo.isDisplayed();}
+    public boolean video3IsDisplayed () { return myJournalVideo.isDisplayed();}
+    public boolean video4IsDisplayed () { return smartRecordVideo.isDisplayed();}
+    public boolean video5IsDisplayed () { return secureDocumentsVideo.isDisplayed();}
+    public boolean video6IsDisplayed () { return accauntSettingsVideo.isDisplayed();}
+
+
+    public boolean yourInboxIsDisplayed ( ){ return yourInboxButtonList.size()>0;}
+    public boolean welcomeTabIsDisplayed () {return welcomeTab.isDisplayed();}
+    public boolean thingsToCompleteTabIsDisplayed () {return thingsToCompleteTab.isDisplayed();}
+    public boolean myJournalTabIsDisplayed () {return myJournalTab.isDisplayed();}
+    public boolean smartRecordTabIsDisplayed () {return smartRecordTab.isDisplayed();}
+    public boolean secureDocumentsTabIsDisplayed () {return secureDocumentsTab.isDisplayed();}
+
 
     public String getLlcBottomLabel (){ return llcBottomLabel.getText();}
     public String getPrivacyPolicyBottomLabel(){ return privacyPolicyBottomLabel.getText();}
     public String getTermsConditionsLabel(){ return termsBottomLabel.getText();}
+
+
 
     public MainPage clickWelcomeTab(){
         welcomeTab.click();
@@ -94,31 +130,5 @@ public class MainPage {
         secureDocumentsTab.click();
         return this;
     }
-
-
-    // My Account tabs clicking
-
-    public MainPage clickMyAccount(){
-        myAccountDropDown.click();
-        return this;
-    }
-    public MainPage goToEditContactInformation(){
-        editContactInformationTab.click();
-        return this;
-    }
-    public MainPage goToEditLoginInformation(){
-        editLoginCredsTab.click();
-        return this;
-    }
-    public MainPage goToManageNotificationsTab(){
-        manageNotificationsTab.click();
-        return this;
-    }
-    public MainPage goToLogOutTab(){
-        logOutTab.click();
-        return this;
-    }
-
-
 
 }
