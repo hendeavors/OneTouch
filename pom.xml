@@ -14,7 +14,15 @@
         <java.version>1.8</java.version>
         <aspectj.version>1.8.13</aspectj.version>
         <allure.version>2.6.0</allure.version>
+
+        <systemProperties>
+            <property>
+                <name>allure.results.directory</name>
+                <value>C:\Users\eugenes\.jenkins\workspace\target\allure-results</value>
+            </property>
+        </systemProperties>
     </properties>
+
 
     <dependencies>
         <dependency>

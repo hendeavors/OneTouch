@@ -1,7 +1,10 @@
 
+import net.bytebuddy.agent.builder.AgentBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class MyJournalPage {
     public WebDriver driver;
@@ -16,22 +19,28 @@ public class MyJournalPage {
    private WebElement glucoseField;
    @FindBy (xpath = ".//*[@id='afterBloodGlucose']")
    private WebElement amGlucoseField;
-   //@FindBy (xpath = ".//*[@id='height']")
-   //private WebElement heightDropDown;
    @FindBy (xpath = ".//*[@id='height']/option[@value='67']")
    private WebElement heightOption;
+
+   // buttons
    @FindBy (xpath = ".//*[@id='saveJournal']")
    private WebElement saveButton;
+    @FindBy (xpath = ".//*[@id='updateJournal']")
+    private WebElement updateButton;
+
+
    @FindBy (xpath = ".//*[@id='moreInfo']")
    private WebElement moreInfoButton;
+
    @FindBy (xpath = ".//*[@id='textJournal']")
    private WebElement dailyJournalField;
+
    @FindBy (xpath = ".//*[@id='dateSelectDiv']/span/span/span")
    private WebElement chooseDateButton;
-   @FindBy (xpath = "//a[@title='Tuesday, January 02, 2018']")
+
+   @FindBy (xpath = "//a[@data-value='2018/2/15']")
    private WebElement setTheDate;
-   @FindBy (xpath = ".//*[@id='updateJournal']")
-   private WebElement updateButton;
+
    @FindBy (xpath = ".//*[@id='bmi']")
    private WebElement bmiField;
 
@@ -39,8 +48,8 @@ public class MyJournalPage {
    // text elements
 
     //More info button
-    @FindBy (xpath = ".//*[@id='moreInfoDialogBox']/p")
-    private WebElement moreInfoResultsMayVary;
+    @FindBy (xpath = ".//*[@id='moreInfoDialogBox']")
+    private WebElement moreInfoContainer;
     @FindBy (xpath = ".//*[@id='moreInfoDialogBox_wnd_title']")
     private WebElement moreInfoHeading;
 
@@ -72,102 +81,139 @@ public class MyJournalPage {
     @FindBy (xpath = "//div[@class='afterbgUnhealthy unhealthy']")
     private WebElement unhealthyAMGlucose;
 
-    //Success
-    @FindBy (xpath = ".//*[@id='app-layout']/div[4]/div/div/div/div[2]/div[1]/div/strong")
+    // MessageContainers
+    @FindBy (xpath = ".//*[@id='main-app-panel-container']/div/div[2]/div[1]/div")
     private WebElement successContainer;
+    @FindBy (xpath = ".//*[@id='journalErrors']/ul/li")
+    private List<WebElement> listOfFormatErrors;
+    @FindBy (xpath = ".//*[@id='journalErrors']")
+    private WebElement alertContainer;
 
-    public MyJournalPage clickSave (){
-        saveButton.click();
-        return this;
-    }
-    public MyJournalPage clickUpdate (){
-        updateButton.click();
-        return this;
-    }
-    public MyJournalPage clickMoreInfo(){
-        moreInfoButton.click();
-        return this;
-    }
-    public MyJournalPage setWeight(String weight){
+
+    //methods
+   public String disclaimerText () {return disclamer.getText();}
+   public boolean disclaimerIsVisible () {return disclamer.isDisplayed();}
+
+   public MyJournalPage typeBloodPressure (String pressure) {
+       bloodPressField.clear();
+       bloodPressField.sendKeys(pressure);
+       return this;
+   }
+   public MyJournalPage clearBloodPressure() {
+       bloodPressField.clear();
+       return this;
+   }
+
+   public MyJournalPage typeWeight (String weight) {
+       weightField.clear();
+       weightField.sendKeys(weight);
+       return this;
+   }
+    public MyJournalPage clearWeight() {
         weightField.clear();
-        weightField.sendKeys(weight);
         return this;
-    }
-    public MyJournalPage setHeight (){
-        //heightDropDown.click();
-        heightOption.click(); // height is always 5'7"
-        return this;
-    }
-    public MyJournalPage setBloodP (String pressure){
-        bloodPressField.clear();
-        bloodPressField.sendKeys(pressure);
-        return this;
-    }
-    public MyJournalPage setGlucose (String glucose){
+   }
+
+   public MyJournalPage typeGlucose (String glucose) {
+       glucoseField.clear();
+       glucoseField.sendKeys(glucose);
+       return this;
+   }
+    public MyJournalPage clearGlucose() {
         glucoseField.clear();
-        glucoseField.sendKeys(glucose);
         return this;
-    }
-    public MyJournalPage setAMGlucose (String amglucose){
+   }
+
+   public MyJournalPage typeAMGlucose (String amglucose) {
+       amGlucoseField.clear();
+       amGlucoseField.sendKeys(amglucose);
+       return this;
+   }
+    public MyJournalPage clearAMGlucose() {
         amGlucoseField.clear();
-        amGlucoseField.sendKeys(amglucose);
         return this;
+   }
+
+
+   public MyJournalPage choose57Height () {
+      heightOption.click();
+      return this;
+   }
+   public MyJournalPage hitSubmit () {
+      if (updateButton.isDisplayed()){
+          updateButton.click();
+      }
+      else {saveButton.click();}
+      return this;
+   }
+
+    public boolean alertContainerIsVisible () {return alertContainer.isDisplayed();}
+    public boolean alertMessagesAreFive () {return listOfFormatErrors.size()==5;}
+
+    public boolean successContainerIsVisible () {return successContainer.isDisplayed();}
+    public String successContainerText () {return successContainer.getText();}
+
+
+    public String weightFormatErrorText () {return listOfFormatErrors.get(0).getText();}
+    public String glucoseFormatErrorText () {return listOfFormatErrors.get(1).getText();}
+    public String amGlucoseFormatErrorText () {return listOfFormatErrors.get(2).getText();}
+    public String bloodPressureFormatErrorText () {return listOfFormatErrors.get(3).getText();}
+    public String bloodPressureFormatErrorText2 () {return listOfFormatErrors.get(4).getText();}
+
+
+    public boolean redBMIIsVisible () {return unhealthyBMIText.isDisplayed();}
+    public boolean greenBMIIsVisible () {return healthyBMIText.isDisplayed();}
+
+    public boolean redBloodPressureIsVisible () {return unhealthyBloodP.isDisplayed();}
+    public boolean greenBloodPressureIsVisible () {return healthyBloodP.isDisplayed();}
+
+    public boolean redGlucoseVisible () {return unhealthyGlucose.isDisplayed();}
+    public boolean greenGlucoseVisible () {return healthyGlucose.isDisplayed();}
+
+    public boolean redAMGlucoseIsVisible () {return unhealthyAMGlucose.isDisplayed();}
+    public boolean greenAMGlucoseVisible () {return healthyAMGlucose.isDisplayed();}
+
+    public MyJournalPage clickMoreInfoButton () {
+       moreInfoButton.click();
+       return this;
     }
-    public MyJournalPage writeANote (String note){
+
+    public boolean moreInfoContainerIsVisible () {return moreInfoContainer.isDisplayed();}
+
+    @FindBy(xpath = ".//*[@id='moreInfoDialogBox']/ul/li")
+    private List<WebElement> healthyResultsBullets;
+
+    public boolean sixLinesOfGuide () {return healthyResultsBullets.size()== 6;}
+
+    public MyJournalPage typeNoteInMyJournal (String message) {
         dailyJournalField.clear();
-        dailyJournalField.sendKeys(note);
+        dailyJournalField.sendKeys(message);
         return this;
     }
-    public MyJournalPage setTheDate (){
+    public MyJournalPage clearMyJournalNote () {
+        dailyJournalField.clear();
+
+        return this;
+    }
+
+    public MyJournalPage clickCalendar () {
         chooseDateButton.click();
+        return this;
+    }
+    public MyJournalPage setTheDate () {
         setTheDate.click();
         return this;
     }
-    public MyJournalPage pressSaveSubmit (boolean value) {
-        if  (!updateButton.isDisplayed() == value)  {
-            updateButton.click();}
-        else {
-            saveButton.click();
-        }
-     return this;
+
+    //public boolean checkTheValues () {return weightField.getAttribute("value" = "200");}
+
+    public MyJournalPage clearAllTheFields (){
+        this.clearWeight();
+        this.clearBloodPressure();
+        this.clearGlucose();
+        this.clearAMGlucose();
+        this.clearMyJournalNote();
+        return new MyJournalPage(driver);
     }
-    public MyJournalPage deleteWeight (){
-        weightField.clear();
-        return this;
-    }
-    public MyJournalPage deleteBP (){
-        bloodPressField.clear();
-        return this;
-    }
-    public MyJournalPage deleteGlucose (){
-        glucoseField.clear();
-        return this;
-    }
-    public MyJournalPage deleteAMGlucose (){
-        amGlucoseField.clear();
-        return this;
-    }
-    public String journalNote () {return dailyJournalField.getText();}
-    public String weightMeaning () { return weightField.getText();}
-    public String successHeading (){return successContainer.getText();}
-
-    public String disclaimerText () {return disclamer.getText();}
-    public String bmiMeaning () {return bmiField.getText();}
-
-    public String bmiUnhealthyMeaning () {return unhealthyBMIText.getText();}
-    public String bmiHealthyMeaning () {return healthyBloodP.getText();}
-
-    public String bpUnhealthyMeaning () {return unhealthyBloodP.getText();}
-    public String bpHealthyMeaning () {return healthyBloodP.getText();}
-
-    public String glucUnhealthymeaning () {return unhealthyGlucose.getText();}
-    public String glucHealthymeaning () {return healthyGlucose.getText();}
-
-    public String glucAMUnhealthymeaning () {return unhealthyAMGlucose.getText();}
-    public String glucAMHealthymeaning () {return healthyAMGlucose.getText();}
-
-    public String moreInfoText () {return moreInfoResultsMayVary.getText();}
-    public String moreInfoText2 () {return moreInfoHeading.getText();}
-
 
 }
